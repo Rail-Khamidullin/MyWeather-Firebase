@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import CoreLocation
 
-extension ViewController {
+extension WeatherViewController {
     
     //    Добавление объектов на экран
     func addObjectView() {
@@ -104,7 +104,7 @@ extension ViewController {
     }
 }
 
-extension ViewController {
+extension WeatherViewController {
     
 //    Метод для открытия и скрытия клавиатуры по нажатию на кнопку returne
     func tapGester() {
@@ -154,7 +154,7 @@ extension ViewController {
     }
 }
 
-extension ViewController {
+extension WeatherViewController {
     
     ///    Достаём расположение девайса
     //            Реализуем метод, где отрабатываем различные ситуации с локацией, а именно с отключенной настройкой в девайсе и включенной

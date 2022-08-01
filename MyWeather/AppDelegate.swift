@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        let rootViewController = ViewController()
+        let rootViewController = WeatherViewController()
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
         return true

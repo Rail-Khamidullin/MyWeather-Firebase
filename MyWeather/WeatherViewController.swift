@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
+final class WeatherViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
     
     //    Скролл
     var scrollView = UIScrollView()
