@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class MyView {
+final class ObjectWeatherView {
     
     //    Скролл Вью
     var scrollView: UIScrollView = {

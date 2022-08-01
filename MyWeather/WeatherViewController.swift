@@ -57,7 +57,7 @@ final class WeatherViewController: UIViewController, CLLocationManagerDelegate, 
     var searchWeatherButton = UIButton(type: .system)
     
     //    Инициализируем Вью
-    var myView: MyView? {
+    var myView: ObjectWeatherView? {
         didSet {
             guard let myView = myView else { return }
             self.scrollView = myView.scrollView
@@ -103,7 +103,7 @@ final class WeatherViewController: UIViewController, CLLocationManagerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        myView = MyView()
+        myView = ObjectWeatherView()
         //        Добавление объектов на экран
         addObjectView()
         //        Расположение объектов на экране
