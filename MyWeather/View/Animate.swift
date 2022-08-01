@@ -9,7 +9,7 @@ import Foundation
 import  UIKit
 
 
-class Animate {
+class Animator {
     
     //MARK: - Animation. Анимация для любого объекта
     

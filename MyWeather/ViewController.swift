@@ -88,7 +88,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     //    Создаём экземпляр класса DataFetcherService
     let dataFetcherService = DataFetcherService()
     //    Создаём экземпляр класса Animate
-    let animate = Animate()
+    let animate = Animator()
     //    Создаём менеджера, который будет с приставкой lazy. Если пользователь откажет в предоставлении месторасположения, методы не будут находиться в памяти
     lazy var locationManager: CLLocationManager = {
         let locationManager = CLLocationManager()
