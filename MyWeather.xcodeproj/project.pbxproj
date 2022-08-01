@@ -17,8 +17,6 @@
 		33D5C5032844C2D700159148 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D5C5022844C2D700159148 /* AppDelegate.swift */; };
 		33D5C5072844C2D700159148 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D5C5062844C2D700159148 /* WeatherViewController.swift */; };
 		33D5C50C2844C2DA00159148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33D5C50B2844C2DA00159148 /* Assets.xcassets */; };
-		33D5C51A2844C2DB00159148 /* MyWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D5C5192844C2DB00159148 /* MyWeatherTests.swift */; };
-		33D5C5252844C2DB00159148 /* MyWeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D5C5242844C2DB00159148 /* MyWeatherUITests.swift */; };
 		33D5C57F2844D59100159148 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D5C57E2844D59100159148 /* View.swift */; };
 		33D5C58B284650E600159148 /* ExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D5C58A284650E600159148 /* ExtensionViewController.swift */; };
 		33D5C595284657E900159148 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D5C594284657E900159148 /* CurrentWeather.swift */; };
@@ -61,11 +59,7 @@
 		33D5C50B2844C2DA00159148 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		33D5C5102844C2DA00159148 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33D5C5152844C2DB00159148 /* MyWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		33D5C5192844C2DB00159148 /* MyWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeatherTests.swift; sourceTree = "<group>"; };
-		33D5C51B2844C2DB00159148 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33D5C5202844C2DB00159148 /* MyWeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyWeatherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		33D5C5242844C2DB00159148 /* MyWeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeatherUITests.swift; sourceTree = "<group>"; };
-		33D5C5262844C2DB00159148 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33D5C57E2844D59100159148 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		33D5C58A284650E600159148 /* ExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewController.swift; sourceTree = "<group>"; };
 		33D5C594284657E900159148 /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
@@ -109,8 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				33D5C5012844C2D700159148 /* MyWeather */,
-				33D5C5182844C2DB00159148 /* MyWeatherTests */,
-				33D5C5232844C2DB00159148 /* MyWeatherUITests */,
 				33D5C5002844C2D700159148 /* Products */,
 				40B66B86B6CBEECAD94FE7E2 /* Pods */,
 				BB6D3981F263155C58125222 /* Frameworks */,
@@ -139,24 +131,6 @@
 				3386820E286EE25F003C64EF /* .gitignore */,
 			);
 			path = MyWeather;
-			sourceTree = "<group>";
-		};
-		33D5C5182844C2DB00159148 /* MyWeatherTests */ = {
-			isa = PBXGroup;
-			children = (
-				33D5C5192844C2DB00159148 /* MyWeatherTests.swift */,
-				33D5C51B2844C2DB00159148 /* Info.plist */,
-			);
-			path = MyWeatherTests;
-			sourceTree = "<group>";
-		};
-		33D5C5232844C2DB00159148 /* MyWeatherUITests */ = {
-			isa = PBXGroup;
-			children = (
-				33D5C5242844C2DB00159148 /* MyWeatherUITests.swift */,
-				33D5C5262844C2DB00159148 /* Info.plist */,
-			);
-			path = MyWeatherUITests;
 			sourceTree = "<group>";
 		};
 		33D5C53C2844C41200159148 /* Model */ = {
@@ -484,7 +458,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33D5C51A2844C2DB00159148 /* MyWeatherTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,7 +465,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33D5C5252844C2DB00159148 /* MyWeatherUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
