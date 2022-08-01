@@ -27,7 +27,7 @@ class MyView {
     var weatherIconImageView: UIImageView = {
         let weatherIconImageView = UIImageView()
         weatherIconImageView.image = UIImage.init(systemName: "nosign")
-        weatherIconImageView.tintColor = UIColor.init(named: "Color")
+        weatherIconImageView.tintColor = UIColor(named: "Text color")
         return weatherIconImageView
     }()
     //    Главный стек
@@ -53,7 +53,8 @@ class MyView {
         let tempLable = UILabel()
         tempLable.text = "Температура, °C"
         tempLable.font = UIFont.systemFont(ofSize: 20)
-        tempLable.textColor = UIColor.init(named: "Color")
+//        tempLable.textColor = UIColor.init(named: "Color")
+        tempLable.textColor = UIColor(named: "Text color")
         return tempLable
     }()
     //    Текущая температура
@@ -61,7 +62,7 @@ class MyView {
         let tempLable = UILabel()
         tempLable.text = "23"
         tempLable.font = UIFont.systemFont(ofSize: 20)
-        tempLable.textColor = UIColor.init(named: "Color")
+        tempLable.textColor = UIColor(named: "Text color")
         return tempLable
     }()
     //    Стек для ощущаемой температуры
@@ -78,7 +79,7 @@ class MyView {
         let feelsTempLable = UILabel()
         feelsTempLable.text = "Ощущается, °C"
         feelsTempLable.font = UIFont.systemFont(ofSize: 20)
-        feelsTempLable.textColor = UIColor.init(named: "Color")
+        feelsTempLable.textColor = UIColor(named: "Text color")
         return feelsTempLable
     }()
     //    Текущая ощущаемая температура
@@ -86,7 +87,7 @@ class MyView {
         let feelsTempLable = UILabel()
         feelsTempLable.text = "25"
         feelsTempLable.font = UIFont.systemFont(ofSize: 20)
-        feelsTempLable.textColor = UIColor.init(named: "Color")
+        feelsTempLable.textColor = UIColor(named: "Text color")
         return feelsTempLable
     }()
     //    Стек для давления
@@ -103,7 +104,7 @@ class MyView {
         let pressureLable = UILabel()
         pressureLable.text = "Давление, гПа"
         pressureLable.font = UIFont.systemFont(ofSize: 20)
-        pressureLable.textColor = UIColor.init(named: "Color")
+        pressureLable.textColor = UIColor(named: "Text color")
         return pressureLable
     }()
     //    Текущее атмосферное давление
@@ -111,7 +112,7 @@ class MyView {
         let pressureLable = UILabel()
         pressureLable.text = "746"
         pressureLable.font = UIFont.systemFont(ofSize: 20)
-        pressureLable.textColor = UIColor.init(named: "Color")
+        pressureLable.textColor = UIColor(named: "Text color")
         return pressureLable
     }()
     //    Стек для ветра
@@ -128,7 +129,7 @@ class MyView {
         let windLable = UILabel()
         windLable.text = "Скорость ветра, м/с"
         windLable.font = UIFont.systemFont(ofSize: 20)
-        windLable.textColor = UIColor.init(named: "Color")
+        windLable.textColor = UIColor(named: "Text color")
         return windLable
     }()
     //    Текущая скорость ветра
@@ -136,7 +137,7 @@ class MyView {
         let windLable = UILabel()
         windLable.text = "5"
         windLable.font = UIFont.systemFont(ofSize: 20)
-        windLable.textColor = UIColor.init(named: "Color")
+        windLable.textColor = UIColor(named: "Text color")
         return windLable
     }()
     //    Стек с влажностью воздуха
@@ -154,7 +155,7 @@ class MyView {
         humidity.text = "Влажность воздуха, %"
         humidity.numberOfLines = 0
         humidity.font = UIFont.systemFont(ofSize: 20)
-        humidity.textColor = UIColor.init(named: "Color")
+        humidity.textColor = UIColor(named: "Text color")
         return humidity
     }()
     //    Текущая влажность воздуха
@@ -163,7 +164,7 @@ class MyView {
         humidity.text = "35"
         humidity.numberOfLines = 0
         humidity.font = UIFont.systemFont(ofSize: 20)
-        humidity.textColor = UIColor.init(named: "Color")
+        humidity.textColor = UIColor(named: "Text color")
         return humidity
     }()
     //    Описание погоды
@@ -171,7 +172,7 @@ class MyView {
         let condition = UILabel()
         condition.text = "Описание"
         condition.font = UIFont.systemFont(ofSize: 20)
-        condition.textColor = UIColor.init(named: "Color")
+        condition.textColor = UIColor(named: "Text color")
         return condition
     }()
     //    Поле для ввода города
