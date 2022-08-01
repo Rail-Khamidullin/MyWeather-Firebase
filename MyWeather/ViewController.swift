@@ -87,10 +87,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     
     //    Создаём экземпляр класса DataFetcherService
     let dataFetcherService = DataFetcherService()
-    //    Создаём экземпляр класса Animate
+    //    Создаём экземпляр класса Animator
     let animate = Animator()
     //    Создаём менеджера, который будет с приставкой lazy. Если пользователь откажет в предоставлении месторасположения, методы не будут находиться в памяти
-    lazy var locationManager: CLLocationManager = {
+    fileprivate lazy var locationManager: CLLocationManager = {
         let locationManager = CLLocationManager()
         locationManager.delegate = self
         //    Необходимо указать точность с которой мы хотим получать информацию. kCLLocationAccuracyKilometer укзывает на точность в километр
@@ -127,14 +127,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDe
     }
     
     //    По нажатию на кнопку ввода город с текстового поля будет передан в GET запрос
-    @objc func myButtonPressed(_ sender: UIButton) {
+     @objc private func myButtonPressed(_ sender: UIButton) {
         broadcastText { [unowned self] (city) in
             self.dataFetcherService.fetchCurrentWeather(forRequstType: .cityName(city: city))
         }
     }
     
     //    Обновление интерфейса приложения
-    func updateInterfaceWith(weather: CurrentWeather) {
+   private func updateInterfaceWith(weather: CurrentWeather) {
         
         DispatchQueue.main.async {
             self.tempCurrentLable.text = weather.currentTemperature

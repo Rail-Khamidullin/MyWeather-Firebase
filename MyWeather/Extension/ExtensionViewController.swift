@@ -39,7 +39,7 @@ extension ViewController {
     }
     
     //    Расположение объектов на экране
-    func configureView() {
+     func configureView() {
         //        Скролл
         scrollView.snp.makeConstraints { (maker) in
             maker.top.equalToSuperview()
@@ -115,7 +115,7 @@ extension ViewController {
         cityTextField.addTarget(self, action: #selector(keyboardWillHide), for: .primaryActionTriggered)
     }
 //    Получение данных по клавиатуре
-    func connectToNotificationCenter() {
+     func connectToNotificationCenter() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardDidShow(_:)),
                                                name: UIResponder.keyboardDidShowNotification,
@@ -127,7 +127,7 @@ extension ViewController {
     }
     
 //    Открытие клавиатуры с поднятием текстового поля на высоту клавиатуры + 5 пойнтов
-    @objc func keyboardDidShow(_ notification: Notification) {
+    @objc private func keyboardDidShow(_ notification: Notification) {
         
         guard let userInfo = notification.userInfo,
               let keyboardHeihgt = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
@@ -136,13 +136,13 @@ extension ViewController {
     }
     
 //    Скрытие клавиатуры
-    @objc func keyboardWillHide() {
+    @objc private func keyboardWillHide() {
         scrollView.contentInset.bottom = 0
         view.endEditing(true)
     }
     
 //    Достаём город из текстового поля и передаём далее, предварительно соединив 2 слова в случае если город состоит из двух слов
-    func broadcastText(completion: @escaping (String) -> ()) {
+     func broadcastText(completion: @escaping (String) -> ()) {
         
         guard let cityName = cityTextField.text else { return }
         if cityName != "" {
@@ -158,7 +158,7 @@ extension ViewController {
     
     ///    Достаём расположение девайса
     //            Реализуем метод, где отрабатываем различные ситуации с локацией, а именно с отключенной настройкой в девайсе и включенной
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    private func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         //        Получаем последнее месторасположение из массива CLLocation. Геопозиция по широте и долготе
         guard let location = locations.last else { return }
@@ -170,7 +170,7 @@ extension ViewController {
         //        Метод чтобы получить погоду по текущему расположению
         dataFetcherService.fetchCurrentWeather(forRequstType: .coordinate(latitude: latitude, longitude: longitude))
     }
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    private func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error.localizedDescription)
     }
     
