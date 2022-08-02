@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 
 //   Класс несёт только одну ответственность
-class DataFetcherService {
+final class DataFetcherService {
     
     //    Создаём клоужер, который принимает структуру CurrentWeather
     var onCompletion: ((CurrentWeather) -> ())?
