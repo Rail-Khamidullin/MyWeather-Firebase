@@ -47,12 +47,12 @@ final class DataFetcherService {
         }
         
         //        Присваиваем полученные декодированные данные weather и обновляем структуру данных CurrentWeather
-        let weather = self.fetchCurrentWeatherData(urlString: urlString) { (currentWeatherData) in
+        let weather = self.fetchCurrentWeatherData(urlString: urlString) { [weak self] (currentWeatherData) in
             
             if let currentWeatherData = currentWeatherData {
                 //                Передаём в форму нашей текущей погоды данные по текущей погоде с сервера
                 guard let currentWeather = CurrentWeather(currentWeatherData: currentWeatherData) else { return }
-                self.onCompletion?(currentWeather)
+                self?.onCompletion?(currentWeather)
             }
         }
     }
