@@ -17,11 +17,13 @@ protocol DataFetcher {
     func genericJSONData<T: Decodable>(urlString: String, response: @escaping (T?) -> ())
 }
 
-class NetworkDataFetcher: DataFetcher {
+final class NetworkDataFetcher: DataFetcher {
     
-//    Установим внешнюю зависимость, таким образом класс будет зависеть от Абстракии (protocol)
-    var networking: Networking
+//    Установим внешнюю зависимость, таким образом класс будет зависеть от Абстракции (protocol)
+    fileprivate let networking: Networking
+    
     init(networking: Networking = NetworkService()) {
+        
         self.networking = networking
     }
     
