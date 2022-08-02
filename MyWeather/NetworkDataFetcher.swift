@@ -9,6 +9,11 @@ import Foundation
 
 //   Фиксируем метод поведения в целом, таким образом его нельзя будет изменить после подписки
 protocol DataFetcher {
+    
+    /// GET запрос
+    /// - Parameters:
+    ///   - urlString: url любого сервиса, в нашем случае запрос погоды
+    ///   - response: получение декодированного ответа  любого типа и передача его в любую модель данных
     func genericJSONData<T: Decodable>(urlString: String, response: @escaping (T?) -> ())
 }
 
