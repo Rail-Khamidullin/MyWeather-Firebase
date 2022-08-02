@@ -8,7 +8,7 @@
 import Foundation
 
 //   Модель данных куда будем присваивать данные из сервера
-class CurrentWeather: Decodable {
+struct CurrentWeather: Decodable {
     
     //    Город
     let cityName: String
