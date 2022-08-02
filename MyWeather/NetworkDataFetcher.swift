@@ -45,10 +45,15 @@ final class NetworkDataFetcher: DataFetcher {
     func genericDecodeJSON<T: Decodable>(type: T.Type, data: Data?) -> T? {
         
         let jsonDecoder = JSONDecoder()
-        guard let data = data else { return nil }
+        guard let data = data else { return
+            nil }
+        
+//        Проверка входящих данных в случае ошибки
+        print(data)
         
         let string = String(data: data, encoding: .utf8)
         print(string)
+        
         do {
             let objects = try jsonDecoder.decode(type.self, from: data)
             return objects
