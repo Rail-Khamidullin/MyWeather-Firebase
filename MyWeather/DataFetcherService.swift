@@ -14,9 +14,11 @@ final class DataFetcherService {
     //    Создаём клоужер, который принимает структуру CurrentWeather
     var onCompletion: ((CurrentWeather) -> ())?
     
-//    Создаём внешнюю зависимость
-    var dataFetcher: DataFetcher
+//    Создаём внешнюю зависимость с NetworkDataFetcher через Абстракцию (протокол DataFetcher)
+    let dataFetcher: DataFetcher
+    
     init(dataFetcher: DataFetcher = NetworkDataFetcher()) {
+        
         self.dataFetcher = dataFetcher
     }
     
