@@ -30,13 +30,13 @@ final class NetworkDataFetcher: DataFetcher {
 //     GET запрос
     func genericJSONData<T: Decodable>(urlString: String, response: @escaping (T?) -> ()) {
         
-        networking.request(urlString: urlString) { (data, error) in
+        networking.request(urlString: urlString) { [weak self] (data, error) in
             if let error = error {
                 print("Error recived requesting data \(error.localizedDescription)")
                 response(nil)
             }
 //            Получаем декодированные данные и передаём далее
-            let decoded = self.genericDecodeJSON(type: T.self, data: data)
+            let decoded = self?.genericDecodeJSON(type: T.self, data: data)
             response(decoded)
         }
     }
