@@ -9,10 +9,13 @@ import Foundation
 
 //   Фиксируем метод поведения в целом, таким образом его нельзя будет изменить после подписки
 protocol Networking {
+    
+    //    Построение запроса данных по URL и передача
     func request(urlString: String, completion: @escaping (Data?, Error?) -> ())
 }
 
-class NetworkService: Networking {
+//   Запрос на получение данных и передачу для дальнейшего парсинга в модель погоды для запроса по любому url и любой модели данных
+final class NetworkService: Networking {
     
     //    Построение запроса данных по URL и передача
     func request(urlString: String, completion: @escaping (Data?, Error?) -> ()) {
@@ -26,8 +29,8 @@ class NetworkService: Networking {
     }
     
     //    Получение данных
-    func createDataTask(from request: URLRequest, completion: @escaping (Data?, Error?) -> ()) -> URLSessionDataTask {
-        //        Сохдаём сессию
+    private func createDataTask(from request: URLRequest, completion: @escaping (Data?, Error?) -> ()) -> URLSessionDataTask {
+        //        Создаём сессию
         let urlSession = URLSession(configuration: .default)
         
         let dataTask = urlSession.dataTask(with: request) { (data, response, error) in
