@@ -14,38 +14,57 @@ struct CurrentWeather: Decodable {
     let cityName: String
     //    Текущая температура
     let temp: Double
+    //    Ощущаемая температура
+    let feelsTemp: Double
+    //    Давление
+    let pressure: Int
+    //    Скорость ветра
+    let speedWind: Double
+    //    Влажность
+    let humidity: Int
+    //    Рассвет
+    let sunrise: Int
+    //    Закат
+    let sunset: Int
+    
+    //    Теущая температура
     var currentTemperature: String {
         //        Поскольку наш Лейбл принимает только значения Стринг, преобразуем значение температуры в Стринг. Возвращаем форматированную строку, где указываем кол-во чисел после запятой, в нашем случае 0
         return String(format: "%.0f", temp)
     }
-    //    Ощущаемая температура
-    let feelsTemp: Double
+    
+    //    Текущая ощущаемая температура
     var currentFeelsTemperature: String {
         //        Возвращаем форматированную строку, где указываем кол-во чисел после запятой, в нашем случае 0
         return String(format: "%.0f", feelsTemp)
     }
     
-    let pressure: Int
+    //    Возвращаем стринговое значение давлению
     var currentPressure: String {
         return String(pressure)
     }
-    let speedWind: Double
+    
+    //    Возвращаем стринговое значение скорости ветра
     var currentSpeedWind: String {
         return String(format: "%.0f", speedWind)
     }
-    let humidity: Int
+    
+    //    Возвращаем стринговое значение влажности
     var currentHumidity: String {
         return String(humidity)
     }
-    let sunrise: Int
+    
+    //    Возвращаем стринговое значение рассвету
     var currentSunrise: String {
         return String(sunrise)
     }
-    let sunset: Int
+    
+    //    Возвращаем стринговое значение закату
     var currentSunset: String {
         return String(sunset)
     }
     
+    //    id - цифровое значение, полученоое от сервера, которое имеет краткое описание текущей погоды
     let conditionCode: Int
     
     //    Напишем доп св-ва, чтобы подставить в метод по обновлению интерфейса приложения. conditionCode мы получаем с сайта"
@@ -69,7 +88,8 @@ struct CurrentWeather: Decodable {
             return "nosign"
         }
     }
-//    Напишем доп св-ва для добавления описания
+    
+    //    Напишем доп св-ва для добавления описания
     var dictionaryWeather: String {
         switch conditionCode {
         case 200...232:
@@ -91,6 +111,7 @@ struct CurrentWeather: Decodable {
         }
     }
     
+    //    Иницализатор, который соединяет модель с данными, полученными от сервера с моделью нашего проекта для обновления интерфейса
     init?(currentWeatherData: CurrrentWeatherData) {
         cityName = currentWeatherData.name
         temp = currentWeatherData.main.temp
