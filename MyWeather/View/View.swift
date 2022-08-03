@@ -52,7 +52,7 @@ final class ObjectWeatherView {
     var tempLable: UILabel = {
         let tempLable = UILabel()
         tempLable.text = "Температура, °C"
-        tempLable.font = UIFont.systemFont(ofSize: 20)
+        tempLable.font = UIFont.systemFont(ofSize: 17)
 //        tempLable.textColor = UIColor.init(named: "Color")
         tempLable.textColor = UIColor(named: "Text color")
         return tempLable
@@ -61,7 +61,7 @@ final class ObjectWeatherView {
     var tempCurrentLable: UILabel = {
         let tempLable = UILabel()
         tempLable.text = "23"
-        tempLable.font = UIFont.systemFont(ofSize: 20)
+        tempLable.font = UIFont.systemFont(ofSize: 17)
         tempLable.textColor = UIColor(named: "Text color")
         return tempLable
     }()
@@ -78,7 +78,7 @@ final class ObjectWeatherView {
     var feelsTempLable: UILabel = {
         let feelsTempLable = UILabel()
         feelsTempLable.text = "Ощущается, °C"
-        feelsTempLable.font = UIFont.systemFont(ofSize: 20)
+        feelsTempLable.font = UIFont.systemFont(ofSize: 17)
         feelsTempLable.textColor = UIColor(named: "Text color")
         return feelsTempLable
     }()
@@ -86,7 +86,7 @@ final class ObjectWeatherView {
     var feelsCurrentTempLable: UILabel = {
         let feelsTempLable = UILabel()
         feelsTempLable.text = "25"
-        feelsTempLable.font = UIFont.systemFont(ofSize: 20)
+        feelsTempLable.font = UIFont.systemFont(ofSize: 17)
         feelsTempLable.textColor = UIColor(named: "Text color")
         return feelsTempLable
     }()
@@ -103,7 +103,7 @@ final class ObjectWeatherView {
     var pressureLable: UILabel = {
         let pressureLable = UILabel()
         pressureLable.text = "Давление, гПа"
-        pressureLable.font = UIFont.systemFont(ofSize: 20)
+        pressureLable.font = UIFont.systemFont(ofSize: 17)
         pressureLable.textColor = UIColor(named: "Text color")
         return pressureLable
     }()
@@ -111,7 +111,7 @@ final class ObjectWeatherView {
     var pressureCurrentLable: UILabel = {
         let pressureLable = UILabel()
         pressureLable.text = "746"
-        pressureLable.font = UIFont.systemFont(ofSize: 20)
+        pressureLable.font = UIFont.systemFont(ofSize: 17)
         pressureLable.textColor = UIColor(named: "Text color")
         return pressureLable
     }()
@@ -128,7 +128,7 @@ final class ObjectWeatherView {
     var windLable: UILabel = {
         let windLable = UILabel()
         windLable.text = "Скорость ветра, м/с"
-        windLable.font = UIFont.systemFont(ofSize: 20)
+        windLable.font = UIFont.systemFont(ofSize: 17)
         windLable.textColor = UIColor(named: "Text color")
         return windLable
     }()
@@ -136,7 +136,7 @@ final class ObjectWeatherView {
     var windCurrentLable: UILabel = {
         let windLable = UILabel()
         windLable.text = "5"
-        windLable.font = UIFont.systemFont(ofSize: 20)
+        windLable.font = UIFont.systemFont(ofSize: 17)
         windLable.textColor = UIColor(named: "Text color")
         return windLable
     }()
@@ -154,7 +154,7 @@ final class ObjectWeatherView {
         let humidity = UILabel()
         humidity.text = "Влажность воздуха, %"
         humidity.numberOfLines = 0
-        humidity.font = UIFont.systemFont(ofSize: 20)
+        humidity.font = UIFont.systemFont(ofSize: 17)
         humidity.textColor = UIColor(named: "Text color")
         return humidity
     }()
@@ -163,7 +163,7 @@ final class ObjectWeatherView {
         let humidity = UILabel()
         humidity.text = "35"
         humidity.numberOfLines = 0
-        humidity.font = UIFont.systemFont(ofSize: 20)
+        humidity.font = UIFont.systemFont(ofSize: 17)
         humidity.textColor = UIColor(named: "Text color")
         return humidity
     }()
@@ -171,16 +171,70 @@ final class ObjectWeatherView {
     var condition: UILabel = {
         let condition = UILabel()
         condition.text = "Описание"
-        condition.font = UIFont.systemFont(ofSize: 20)
+        condition.font = UIFont.systemFont(ofSize: 17)
         condition.textColor = UIColor(named: "Text color")
         return condition
+    }()
+    //    Стек с рассветом
+    var sunriseStack: UIStackView = {
+        let sunriseStack = UIStackView()
+        sunriseStack.axis = .horizontal
+        sunriseStack.distribution = .fill
+        sunriseStack.alignment = .leading
+        sunriseStack.spacing = 10
+        return sunriseStack
+    }()
+    //    Рассвет
+    var sunriseLable: UILabel = {
+        let sunriseLable = UILabel()
+        sunriseLable.text = "Рассвет, час:мин:сек"
+        sunriseLable.numberOfLines = 0
+        sunriseLable.font = UIFont.systemFont(ofSize: 17)
+        sunriseLable.textColor = UIColor(named: "Text color")
+        return sunriseLable
+    }()
+    //    Время рассвета
+    var sunriseLableTime: UILabel = {
+        let sunriseLableTime = UILabel()
+        sunriseLableTime.text = "04:22:31"
+        sunriseLableTime.numberOfLines = 0
+        sunriseLableTime.font = UIFont.systemFont(ofSize: 17)
+        sunriseLableTime.textColor = UIColor(named: "Text color")
+        return sunriseLableTime
+    }()
+    //    Стек с закатом
+    var sunsetStack: UIStackView = {
+        let sunsetStack = UIStackView()
+        sunsetStack.axis = .horizontal
+        sunsetStack.distribution = .fill
+        sunsetStack.alignment = .leading
+        sunsetStack.spacing = 10
+        return sunsetStack
+    }()
+    //    Закат
+    var sunsetLable: UILabel = {
+        let sunsetLable = UILabel()
+        sunsetLable.text = "Закат, час:мин:сек"
+        sunsetLable.numberOfLines = 0
+        sunsetLable.font = UIFont.systemFont(ofSize: 17)
+        sunsetLable.textColor = UIColor(named: "Text color")
+        return sunsetLable
+    }()
+    //    Время заката
+    var sunsetLableTime: UILabel = {
+        let sunsetLableTime = UILabel()
+        sunsetLableTime.text = "21:10:15"
+        sunsetLableTime.numberOfLines = 0
+        sunsetLableTime.font = UIFont.systemFont(ofSize: 17)
+        sunsetLableTime.textColor = UIColor(named: "Text color")
+        return sunsetLableTime
     }()
     //    Поле для ввода города
     var cityTextField: UITextField = {
         let cityTextField = UITextField()
         cityTextField.placeholder = "Введите город"
         cityTextField.textAlignment = .center
-        cityTextField.font = UIFont.systemFont(ofSize: 20)
+        cityTextField.font = UIFont.systemFont(ofSize: 17)
         cityTextField.backgroundColor = .white
         cityTextField.textColor = .init(red: 0.4, green: 0.4, blue: 0.45, alpha: 1)
         cityTextField.layer.borderWidth = 2

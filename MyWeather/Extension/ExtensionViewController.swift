@@ -23,6 +23,8 @@ extension WeatherViewController {
         mainStackView.addArrangedSubview(pressureStackView)
         mainStackView.addArrangedSubview(windStackView)
         mainStackView.addArrangedSubview(humidityStackView)
+        mainStackView.addArrangedSubview(sunriseStackView)
+        mainStackView.addArrangedSubview(sunsetStackView)
         tempStackView.addArrangedSubview(tempLable)
         tempStackView.addArrangedSubview(tempCurrentLable)
         feelsStackView.addArrangedSubview(feelsTempLable)
@@ -33,6 +35,10 @@ extension WeatherViewController {
         windStackView.addArrangedSubview(windCurrentLable)
         humidityStackView.addArrangedSubview(humidityLable)
         humidityStackView.addArrangedSubview(currentHumidityLable)
+        sunriseStackView.addArrangedSubview(sunriseLable)
+        sunriseStackView.addArrangedSubview(sunriseLableTime)
+        sunsetStackView.addArrangedSubview(sunsetLable)
+        sunsetStackView.addArrangedSubview(sunsetLableTime)
         mainStackView.addArrangedSubview(condition)
         scrollView.addSubview(cityTextField)
         scrollView.addSubview(searchWeatherButton)
@@ -59,26 +65,34 @@ extension WeatherViewController {
         }
         //        Главный стек
         mainStackView.snp.makeConstraints { (maker) in
-            maker.left.right.equalToSuperview().inset(20)
+            maker.left.right.equalToSuperview().inset(10)
             maker.top.equalTo(weatherIconImageView.snp.bottom).offset(5)
             maker.centerX.equalToSuperview()
-            maker.height.equalTo(192)
+            maker.height.equalTo(237)
         }
         //        Температура
         tempLable.snp.makeConstraints { (maker) in
-            maker.width.equalTo(215)
+            maker.width.equalTo(200)
         }
         //        Ощущаемая температура
         feelsTempLable.snp.makeConstraints { (maker) in
-            maker.width.equalTo(215)
+            maker.width.equalTo(200)
         }
         //        Давление
         pressureLable.snp.makeConstraints { (maker) in
-            maker.width.equalTo(215)
+            maker.width.equalTo(200)
         }
         //        Скорость ветра
         windLable.snp.makeConstraints { (maker) in
-            maker.width.equalTo(215)
+            maker.width.equalTo(200)
+        }
+//        Рассвет
+        sunriseLable.snp.makeConstraints { (maker) in
+            maker.width.equalTo(200)
+        }
+//        Закат
+        sunsetLable.snp.makeConstraints { (maker) in
+            maker.width.equalTo(200)
         }
         //        Описание
         condition.snp.makeConstraints { (maker) in
@@ -86,7 +100,7 @@ extension WeatherViewController {
         }
         //        Влажность
         humidityLable.snp.makeConstraints { (maker) in
-            maker.width.equalTo(215)
+            maker.width.equalTo(200)
         }
         //        Поле для ввода города
         cityTextField.snp.makeConstraints { (maker) in

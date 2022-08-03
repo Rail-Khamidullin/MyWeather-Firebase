@@ -51,6 +51,18 @@ final class WeatherViewController: UIViewController, CLLocationManagerDelegate, 
     var humidityLable = UILabel()
     //    Текущая влажность
     var currentHumidityLable = UILabel()
+    //    Стек с рассветом
+    var sunriseStackView = UIStackView()
+    //    Рассвет
+    var sunriseLable = UILabel()
+    //    Врремя рассвета
+    var sunriseLableTime = UILabel()
+    //    Стек с закатом
+    var sunsetStackView = UIStackView()
+    //    Закат
+    var sunsetLable = UILabel()
+    //    Врремя заката
+    var sunsetLableTime = UILabel()
     //    Поле для ввода города
     var cityTextField = UITextField()
     //    Кнопка поиска погоды
@@ -80,6 +92,12 @@ final class WeatherViewController: UIViewController, CLLocationManagerDelegate, 
             self.humidityStackView = myView.humidityStack
             self.humidityLable = myView.humidityLable
             self.currentHumidityLable = myView.currentHumidityLable
+            self.sunriseStackView = myView.sunriseStack
+            self.sunriseLable = myView.sunriseLable
+            self.sunriseLableTime = myView.sunriseLableTime
+            self.sunsetStackView = myView.sunsetStack
+            self.sunsetLable = myView.sunsetLable
+            self.sunsetLableTime = myView.sunsetLableTime
             self.cityTextField = myView.cityTextField
             self.searchWeatherButton = myView.searchWeatherButton
         }
@@ -144,6 +162,8 @@ final class WeatherViewController: UIViewController, CLLocationManagerDelegate, 
             self.weatherIconImageView.image = UIImage(systemName: weather.systemIconNameString)
             self.currentHumidityLable.text = weather.currentHumidity
             self.condition.text = weather.dictionaryWeather
+            self.sunriseLableTime.text = weather.currentSunrise
+            self.sunsetLableTime.text = weather.currentSunset
         }
     }
 }

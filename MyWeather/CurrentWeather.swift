@@ -56,12 +56,39 @@ struct CurrentWeather: Decodable {
     
     //    Возвращаем стринговое значение рассвету
     var currentSunrise: String {
-        return String(sunrise)
+        //        Конвертируем полученную данные из Unix в часы, минуты и секунды
+        let epochDate = Date(timeIntervalSince1970: TimeInterval(sunrise) as TimeInterval)
+        let calendar = Calendar.current
+        //        Часы
+        let epochHour = calendar.component(.hour, from: epochDate)
+        //        Минуты
+        let epochMinute = calendar.component(.minute, from: epochDate)
+        //        Секунды
+        let epochSecond = calendar.component(.second, from: epochDate)
+        //        Соединяем в удобочитаемый вид
+        let sunriseTime = "\(epochHour):\(epochMinute):\(epochSecond)"
+        
+        return String(sunriseTime)
     }
     
     //    Возвращаем стринговое значение закату
     var currentSunset: String {
-        return String(sunset)
+        //        Конвертируем полученную данные из Unix в часы, минуты и секунды
+        let epochDate = Date(timeIntervalSince1970: TimeInterval(sunset) as TimeInterval)
+        //        Для проверки
+        print(epochDate)
+        
+        let calendar = Calendar.current
+        //        Часы
+        let epochHour = calendar.component(.hour, from: epochDate)
+        //        Минуты
+        let epochMinute = calendar.component(.minute, from: epochDate)
+        //        Секунды
+        let epochSecond = calendar.component(.second, from: epochDate)
+        //        Соединяем в удобочитаемый вид
+        let sunsetTime = "\(epochHour):\(epochMinute):\(epochSecond)"
+        
+        return String(sunsetTime)
     }
     
     //    id - цифровое значение, полученоое от сервера, которое имеет краткое описание текущей погоды
