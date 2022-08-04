@@ -17,11 +17,13 @@ protocol DataFetcher {
     func genericJSONData<T: Decodable>(urlString: String, response: @escaping (T?) -> ())
 }
 
+//   Класс, который возвращает декодированные данные для любой модели
 final class NetworkDataFetcher: DataFetcher {
     
 //    Установим внешнюю зависимость, таким образом класс будет зависеть от Абстракции (protocol)
     fileprivate let networking: Networking
     
+//    Создаём конструктор для нашей абстрактной зависимости от Network, которая равна классу NetworkService
     init(networking: Networking = NetworkService()) {
         
         self.networking = networking
@@ -45,14 +47,15 @@ final class NetworkDataFetcher: DataFetcher {
     func genericDecodeJSON<T: Decodable>(type: T.Type, data: Data?) -> T? {
         
         let jsonDecoder = JSONDecoder()
-        guard let data = data else { return
-            nil }
+        guard let data = data else {
+            //        Проверка входящих данных в случае ошибки
+            print("Данные для декодинга не получены!")
+            
+            return nil
+        }
         
-//        Проверка входящих данных в случае ошибки
-        print(data)
-        
-        let string = String(data: data, encoding: .utf8)
-        print(string)
+//        let string = String(data: data, encoding: .utf8)
+//        print(string)
         
         do {
             let objects = try jsonDecoder.decode(type.self, from: data)
