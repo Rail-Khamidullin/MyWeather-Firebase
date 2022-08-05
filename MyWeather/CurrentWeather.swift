@@ -146,8 +146,8 @@ struct CurrentWeather: Decodable {
         pressure = currentWeatherData.main.pressure
         speedWind = currentWeatherData.wind.speed
         humidity = currentWeatherData.main.humidity
-        sunrise = currentWeatherData.sys.sunrise
-        sunset = currentWeatherData.sys.sunset
+        sunrise = currentWeatherData.sunTime.sunrise
+        sunset = currentWeatherData.sunTime.sunset
         conditionCode = currentWeatherData.weather.first!.id
     }
 }
