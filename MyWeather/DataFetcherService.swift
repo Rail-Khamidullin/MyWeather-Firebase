@@ -38,7 +38,7 @@ final class DataFetcherService {
     //    Получаем текущую погоду
     func fetchCurrentWeather(forRequstType requestType: RequestType) {
         
-        var urlString = ""
+        let urlString: String
         //        Поиск по локации или по городу
         switch requestType {
         case .cityName(city: let city):
