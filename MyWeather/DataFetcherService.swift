@@ -11,6 +11,13 @@ import CoreLocation
 //   Класс несёт только одну ответственность
 final class DataFetcherService {
     
+    //    Энум будет определять город в зависимости от координат расположения устройства или введённого города в ручную
+    enum RequestType {
+        case cityName(city: String)
+        case coordinate(latitude: CLLocationDegrees, longitude: CLLocationDegrees)
+        
+    }
+    
     //    Создаём клоужер, который принимает структуру CurrentWeather
     var onCompletion: ((CurrentWeather) -> ())?
     
@@ -21,13 +28,6 @@ final class DataFetcherService {
     init(dataFetcher: DataFetcher = NetworkDataFetcher()) {
         
         self.dataFetcher = dataFetcher
-    }
-    
-    //    Энум будет определять город в зависимости от координат расположения устройства или введённого города в ручную
-    enum RequestType {
-        case cityName(city: String)
-        case coordinate(latitude: CLLocationDegrees, longitude: CLLocationDegrees)
-        
     }
     
     //    Получаем декодированные данные по структуре входящего ответа с сервера и передаём далее
