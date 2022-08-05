@@ -26,6 +26,8 @@ struct CurrentWeather: Decodable {
     let sunrise: Int
     //    Закат
     let sunset: Int
+    //    id - цифровое значение, полученоое от сервера, которое имеет краткое описание текущей погоды
+    let conditionCode: Int
     
     //    Теущая температура
     var currentTemperature: String {
@@ -90,9 +92,6 @@ struct CurrentWeather: Decodable {
         
         return String(sunsetTime)
     }
-    
-    //    id - цифровое значение, полученоое от сервера, которое имеет краткое описание текущей погоды
-    let conditionCode: Int
     
     //    Напишем доп св-ва, чтобы подставить в метод по обновлению интерфейса приложения. conditionCode мы получаем с сайта"
     var systemIconNameString: String {
