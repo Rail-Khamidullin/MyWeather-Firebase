@@ -61,8 +61,8 @@ final class NetworkDataFetcher: DataFetcher {
             let objects = try jsonDecoder.decode(type.self, from: data)
             return objects
             
-        } catch let error as NSError {
-            print(error.localizedDescription)
+        } catch {
+            print(error)
         }
         return nil
     }
