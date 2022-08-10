@@ -19,7 +19,7 @@ extension WeatherViewController {
         scrollView.addSubview(weatherIconImageView)
         scrollView.addSubview(mainStackView)
         mainStackView.addArrangedSubview(tempStackView)
-        mainStackView.addArrangedSubview(feelsStackView)
+        mainStackView.addArrangedSubview(feelsTempStackView)
         mainStackView.addArrangedSubview(pressureStackView)
         mainStackView.addArrangedSubview(windStackView)
         mainStackView.addArrangedSubview(humidityStackView)
@@ -27,8 +27,8 @@ extension WeatherViewController {
         mainStackView.addArrangedSubview(sunsetStackView)
         tempStackView.addArrangedSubview(tempLable)
         tempStackView.addArrangedSubview(tempCurrentLable)
-        feelsStackView.addArrangedSubview(feelsTempLable)
-        feelsStackView.addArrangedSubview(feelsCurrentTempLable)
+        feelsTempStackView.addArrangedSubview(feelsTempLable)
+        feelsTempStackView.addArrangedSubview(feelsCurrentTempLable)
         pressureStackView.addArrangedSubview(pressureLable)
         pressureStackView.addArrangedSubview(pressureCurrentLable)
         windStackView.addArrangedSubview(windLable)
@@ -146,7 +146,7 @@ extension WeatherViewController {
         guard let userInfo = notification.userInfo,
               let keyboardHeihgt = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
         
-        scrollView.contentInset.bottom = keyboardHeihgt.height + 5
+        scrollView.contentInset.bottom = keyboardHeihgt.height + 7
     }
     
 //    Скрытие клавиатуры
