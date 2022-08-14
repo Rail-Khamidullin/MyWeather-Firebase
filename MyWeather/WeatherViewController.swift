@@ -71,44 +71,6 @@ final class WeatherViewController: UIViewController, CLLocationManagerDelegate, 
     //    Инициализируем класс WeatherView со свойствами отображаемых объектов
     final let weatherView = WeatherView()
     
-//    Подготовлен для удаления
-    /*
-     //    Инициализируем Вью
-     var myView: WeatherView? {
-     didSet {
-     guard let myView = myView else { return }
-     self.scrollView = myView.scrollView
-     self.imageView = myView.imageView
-     self.weatherIconImageView = myView.weatherIconImageView
-     self.mainStackView = myView.mainStackView
-     self.tempStackView = myView.tempStackView
-     self.tempLable = myView.tempLable
-     self.tempCurrentLable = myView.tempCurrentLable
-     self.feelsTempStackView = myView.feelsStackView
-     self.feelsTempLable = myView.feelsTempLable
-     self.feelsCurrentTempLable = myView.feelsCurrentTempLable
-     self.pressureStackView = myView.pressureStackView
-     self.pressureLable = myView.pressureLable
-     self.pressureCurrentLable = myView.pressureCurrentLable
-     self.windStackView = myView.windStackView
-     self.windLable = myView.windLable
-     self.windCurrentLable = myView.windCurrentLable
-     self.condition = myView.condition
-     self.humidityStackView = myView.humidityStack
-     self.humidityLable = myView.humidityLable
-     self.currentHumidityLable = myView.currentHumidityLable
-     self.sunriseStackView = myView.sunriseStack
-     self.sunriseLable = myView.sunriseLable
-     self.sunriseLableTime = myView.sunriseLableTime
-     self.sunsetStackView = myView.sunsetStack
-     self.sunsetLable = myView.sunsetLable
-     self.sunsetLableTime = myView.sunsetLableTime
-     self.cityTextField = myView.cityTextField
-     self.searchWeatherButton = myView.searchWeatherButton
-     }
-     }
-     */
-    
     //    Создаём экземпляр класса DataFetcherService
     let dataFetcherService = DataFetcherService()
     //    Создаём экземпляр класса Animator
@@ -126,8 +88,6 @@ final class WeatherViewController: UIViewController, CLLocationManagerDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //        myView = WeatherView()
         
         //        Добавляем свойства для отображаемых объектов
         addPropertyObjectView()
