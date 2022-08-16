@@ -68,40 +68,8 @@ final class WeatherViewController: UIViewController, CLLocationManagerDelegate, 
     //    Кнопка поиска погоды
     var searchWeatherButton = UIButton(type: .system)
     
-    //    Инициализируем Вью
-    var myView: WeatherView? {
-        didSet {
-            guard let myView = myView else { return }
-            self.scrollView = myView.scrollView
-            self.imageView = myView.imageView
-            self.weatherIconImageView = myView.weatherIconImageView
-            self.mainStackView = myView.mainStackView
-            self.tempStackView = myView.tempStackView
-            self.tempLable = myView.tempLable
-            self.tempCurrentLable = myView.tempCurrentLable
-            self.feelsStackView = myView.feelsStackView
-            self.feelsTempLable = myView.feelsTempLable
-            self.feelsCurrentTempLable = myView.feelsCurrentTempLable
-            self.pressureStackView = myView.pressureStackView
-            self.pressureLable = myView.pressureLable
-            self.pressureCurrentLable = myView.pressureCurrentLable
-            self.windStackView = myView.windStackView
-            self.windLable = myView.windLable
-            self.windCurrentLable = myView.windCurrentLable
-            self.condition = myView.condition
-            self.humidityStackView = myView.humidityStack
-            self.humidityLable = myView.humidityLable
-            self.currentHumidityLable = myView.currentHumidityLable
-            self.sunriseStackView = myView.sunriseStack
-            self.sunriseLable = myView.sunriseLable
-            self.sunriseLableTime = myView.sunriseLableTime
-            self.sunsetStackView = myView.sunsetStack
-            self.sunsetLable = myView.sunsetLable
-            self.sunsetLableTime = myView.sunsetLableTime
-            self.cityTextField = myView.cityTextField
-            self.searchWeatherButton = myView.searchWeatherButton
-        }
-    }
+    //    Инициализируем WeatherView
+    var weatherView = WeatherView()
     
     //    Создаём экземпляр класса DataFetcherService
     let dataFetcherService = DataFetcherService()
@@ -121,11 +89,11 @@ final class WeatherViewController: UIViewController, CLLocationManagerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        myView = WeatherView()
-        //        Добавление объектов на экран
-        addObjectView()
-        //        Расположение объектов на экране
-        configureView()
+//        Констрейнты на весь контроллер
+        weatherView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+        
         //        Метод для открытия и скрытия клавиатуры
         tapGester()
         //        Получение данных по клавиатуре
@@ -136,7 +104,7 @@ final class WeatherViewController: UIViewController, CLLocationManagerDelegate, 
         //        Вызов метода, который обновит интерфейс приложения по полученным данным с сервера
         dataFetcherService.onCompletion = { [weak self] currentWeather in
             guard let self = self else { return }
-            self.updateInterfaceWith(weather: currentWeather)
+            self.weatherView.updateInterfaceWith(weather: currentWeather)
         }
         //        Добавим таргет к кнопке поиска погоды
         searchWeatherButton.addTarget(self, action: #selector(myButtonPressed(_:)), for: .primaryActionTriggered)
@@ -145,25 +113,9 @@ final class WeatherViewController: UIViewController, CLLocationManagerDelegate, 
     }
     
     //    По нажатию на кнопку ввода город с текстового поля будет передан в GET запрос
-     @objc private func myButtonPressed(_ sender: UIButton) {
+    @objc private func myButtonPressed(_ sender: UIButton) {
         broadcastText { [unowned self] (city) in
             self.dataFetcherService.fetchCurrentWeather(forRequstType: .cityName(city: city))
-        }
-    }
-    
-    //    Обновление интерфейса приложения
-   private func updateInterfaceWith(weather: CurrentWeather) {
-        
-        DispatchQueue.main.async {
-            self.tempCurrentLable.text = weather.currentTemperature
-            self.feelsCurrentTempLable.text = weather.currentFeelsTemperature
-            self.pressureCurrentLable.text = weather.currentPressure
-            self.windCurrentLable.text = weather.currentSpeedWind
-            self.weatherIconImageView.image = UIImage(systemName: weather.systemIconNameString)
-            self.currentHumidityLable.text = weather.currentHumidity
-            self.condition.text = weather.dictionaryWeather
-            self.sunriseLableTime.text = weather.currentSunrise
-            self.sunsetLableTime.text = weather.currentSunset
         }
     }
 }
