@@ -38,7 +38,6 @@ final class WeatherView: UIView {
     //    Стек для температуры
     private let tempStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.axis = .horizontal
         stackView.alignment = .leading
         stackView.spacing = 10
         return stackView
@@ -63,7 +62,6 @@ final class WeatherView: UIView {
     //    Стек для ощущаемой температуры
     private let feelsStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.axis = .horizontal
         stackView.alignment = .leading
         stackView.spacing = 10
         return stackView
@@ -87,7 +85,6 @@ final class WeatherView: UIView {
     //    Стек для давления
     private let pressureStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.axis = .horizontal
         stackView.alignment = .leading
         stackView.spacing = 10
         return stackView
@@ -111,7 +108,6 @@ final class WeatherView: UIView {
     //    Стек для ветра
     private let windStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.axis = .horizontal
         stackView.alignment = .leading
         stackView.spacing = 10
         return stackView
@@ -135,7 +131,6 @@ final class WeatherView: UIView {
     //    Стек с влажностью воздуха
     private let humidityStack: UIStackView = {
         let stackView = UIStackView()
-        stackView.axis = .horizontal
         stackView.alignment = .leading
         stackView.spacing = 10
         return stackView
@@ -169,7 +164,6 @@ final class WeatherView: UIView {
     //    Стек с рассветом
     private let sunriseStack: UIStackView = {
         let sunriseStack = UIStackView()
-        sunriseStack.axis = .horizontal
         sunriseStack.alignment = .leading
         sunriseStack.spacing = 10
         return sunriseStack
@@ -195,7 +189,6 @@ final class WeatherView: UIView {
     //    Стек с закатом
     private let sunsetStack: UIStackView = {
         let sunsetStack = UIStackView()
-        sunsetStack.axis = .horizontal
         sunsetStack.alignment = .leading
         sunsetStack.spacing = 10
         return sunsetStack
