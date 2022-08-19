@@ -12,10 +12,7 @@ import SnapKit
 final class WeatherView: UIView {
     
     //    Скролл Вью
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        return scrollView
-    }()
+    private let scrollView = UIScrollView()
     //    Фон экрана
     private let imageView: UIImageView = {
         let imageView = UIImageView()
