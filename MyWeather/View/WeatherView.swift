@@ -47,7 +47,6 @@ final class WeatherView: UIView {
         let tempLable = UILabel()
         tempLable.text = "Температура, °C"
         tempLable.font = UIFont.systemFont(ofSize: 17)
-        //        tempLable.textColor = UIColor.init(named: "Color")
         tempLable.textColor = UIColor(named: "Text color")
         return tempLable
     }()
@@ -139,7 +138,6 @@ final class WeatherView: UIView {
     private let humidityLable: UILabel = {
         let humidity = UILabel()
         humidity.text = "Влажность воздуха, %"
-        humidity.numberOfLines = 0
         humidity.font = UIFont.systemFont(ofSize: 17)
         humidity.textColor = UIColor(named: "Text color")
         return humidity
@@ -148,7 +146,6 @@ final class WeatherView: UIView {
     private let currentHumidityLable: UILabel = {
         let humidity = UILabel()
         humidity.text = "35"
-        humidity.numberOfLines = 0
         humidity.font = UIFont.systemFont(ofSize: 17)
         humidity.textColor = UIColor(named: "Text color")
         return humidity
@@ -172,7 +169,6 @@ final class WeatherView: UIView {
     private let sunriseLable: UILabel = {
         let sunriseLable = UILabel()
         sunriseLable.text = "Рассвет, час:мин:сек"
-        sunriseLable.numberOfLines = 0
         sunriseLable.font = UIFont.systemFont(ofSize: 17)
         sunriseLable.textColor = UIColor(named: "Text color")
         return sunriseLable
@@ -181,7 +177,6 @@ final class WeatherView: UIView {
     private let sunriseLableTime: UILabel = {
         let sunriseLableTime = UILabel()
         sunriseLableTime.text = "04:22:31"
-        sunriseLableTime.numberOfLines = 0
         sunriseLableTime.font = UIFont.systemFont(ofSize: 17)
         sunriseLableTime.textColor = UIColor(named: "Text color")
         return sunriseLableTime
@@ -197,7 +192,6 @@ final class WeatherView: UIView {
     private let sunsetLable: UILabel = {
         let sunsetLable = UILabel()
         sunsetLable.text = "Закат, час:мин:сек"
-        sunsetLable.numberOfLines = 0
         sunsetLable.font = UIFont.systemFont(ofSize: 17)
         sunsetLable.textColor = UIColor(named: "Text color")
         return sunsetLable
@@ -206,7 +200,6 @@ final class WeatherView: UIView {
     private let sunsetLableTime: UILabel = {
         let sunsetLableTime = UILabel()
         sunsetLableTime.text = "21:10:15"
-        sunsetLableTime.numberOfLines = 0
         sunsetLableTime.font = UIFont.systemFont(ofSize: 17)
         sunsetLableTime.textColor = UIColor(named: "Text color")
         return sunsetLableTime
