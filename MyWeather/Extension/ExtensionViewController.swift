@@ -48,7 +48,7 @@ extension WeatherViewController {
     }
     
     //    Достаём город из текстового поля и передаём далее, предварительно соединив 2 слова в случае если город состоит из двух слов
-    func broadcastText(completion: @escaping (String) -> ()) {
+    func getTextNameCity(completion: @escaping (String) -> ()) {
         
         guard let cityName = cityTextField.text else { return }
         if cityName != "" {
