@@ -245,7 +245,7 @@ final class WeatherView: UIView {
     }
     
     //    Добавление объектов на экран
-    func configureView() {
+    private func configureView() {
         
         //        view.addSubview(scrollView)
         //        view.backgroundColor = .white
@@ -279,7 +279,7 @@ final class WeatherView: UIView {
     }
     
     //    Расположение объектов на экране
-    func makeConstraints() {
+    private func makeConstraints() {
         //        Скролл
         scrollView.snp.makeConstraints { (maker) in
             maker.top.equalToSuperview()
