@@ -283,13 +283,13 @@ final class WeatherView: UIView {
         //        Скролл
         scrollView.snp.makeConstraints { (maker) in
             maker.top.equalToSuperview()
-            maker.centerX.centerY.equalToSuperview()
+            maker.center.equalToSuperview()
             maker.width.equalToSuperview()
         }
         //        Фон
         imageView.snp.makeConstraints { (maker) in
             maker.left.right.top.bottom.equalToSuperview()
-            maker.centerX.centerY.equalToSuperview()
+            maker.center.equalToSuperview()
         }
         //        Иконка с погодой
         weatherIconImageView.snp.makeConstraints { (maker) in
