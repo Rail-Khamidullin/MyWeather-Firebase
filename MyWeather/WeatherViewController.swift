@@ -69,12 +69,12 @@ final class WeatherViewController: UIViewController, CLLocationManagerDelegate, 
     var searchWeatherButton = UIButton(type: .system)
     
     //    Инициализируем WeatherView
-    var weatherView = WeatherView()
+    private let weatherView = WeatherView()
     
     //    Создаём экземпляр класса DataFetcherService
     let dataFetcherService = DataFetcherService()
     //    Создаём экземпляр класса Animator
-    let animate = Animator()
+    private let animate = Animator()
     //    Создаём менеджера, который будет с приставкой lazy. Если пользователь откажет в предоставлении месторасположения, методы не будут находиться в памяти
     fileprivate lazy var locationManager: CLLocationManager = {
         let locationManager = CLLocationManager()
