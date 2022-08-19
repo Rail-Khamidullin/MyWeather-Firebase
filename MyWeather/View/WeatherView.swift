@@ -31,7 +31,6 @@ final class WeatherView: UIView {
     private let mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = .fill
         stackView.alignment = .leading
         stackView.spacing = 10
         return stackView
@@ -40,7 +39,6 @@ final class WeatherView: UIView {
     private let tempStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.distribution = .fill
         stackView.alignment = .leading
         stackView.spacing = 10
         return stackView
@@ -66,7 +64,6 @@ final class WeatherView: UIView {
     private let feelsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.distribution = .fill
         stackView.alignment = .leading
         stackView.spacing = 10
         return stackView
@@ -91,7 +88,6 @@ final class WeatherView: UIView {
     private let pressureStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.distribution = .fill
         stackView.alignment = .leading
         stackView.spacing = 10
         return stackView
@@ -116,7 +112,6 @@ final class WeatherView: UIView {
     private let windStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.distribution = .fill
         stackView.alignment = .leading
         stackView.spacing = 10
         return stackView
@@ -141,7 +136,6 @@ final class WeatherView: UIView {
     private let humidityStack: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.distribution = .fill
         stackView.alignment = .leading
         stackView.spacing = 10
         return stackView
@@ -176,7 +170,6 @@ final class WeatherView: UIView {
     private let sunriseStack: UIStackView = {
         let sunriseStack = UIStackView()
         sunriseStack.axis = .horizontal
-        sunriseStack.distribution = .fill
         sunriseStack.alignment = .leading
         sunriseStack.spacing = 10
         return sunriseStack
@@ -203,7 +196,6 @@ final class WeatherView: UIView {
     private let sunsetStack: UIStackView = {
         let sunsetStack = UIStackView()
         sunsetStack.axis = .horizontal
-        sunsetStack.distribution = .fill
         sunsetStack.alignment = .leading
         sunsetStack.spacing = 10
         return sunsetStack
