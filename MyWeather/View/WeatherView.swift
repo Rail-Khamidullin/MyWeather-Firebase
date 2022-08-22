@@ -11,6 +11,12 @@ import SnapKit
 
 final class WeatherView: UIView {
     
+    //    Основная вьюшка
+    private let view: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
     //    Скролл Вью
     private let scrollView = UIScrollView()
     //    Фон экрана
@@ -230,14 +236,15 @@ final class WeatherView: UIView {
         return searchWeatherButton
     }()
     
-//    Создаём инициализатор для отображения методов
+    //    Создаём инициализатор для отображения методов
     init() {
         super.init(frame: .zero)
         
-//        Отображение объектов
+        //        Отображение объектов
         configureView()
-//        Размещение объектов на экране
+        //        Размещение объектов на экране
         makeConstraints()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -247,8 +254,7 @@ final class WeatherView: UIView {
     //    Добавление объектов на экран
     private func configureView() {
         
-        //        view.addSubview(scrollView)
-        //        view.backgroundColor = .white
+        view.addSubview(scrollView)
         scrollView.addSubview(imageView)
         scrollView.addSubview(weatherIconImageView)
         scrollView.addSubview(mainStackView)
@@ -280,6 +286,7 @@ final class WeatherView: UIView {
     
     //    Расположение объектов на экране
     private func makeConstraints() {
+        
         //        Скролл
         scrollView.snp.makeConstraints { (maker) in
             maker.top.equalToSuperview()

@@ -89,7 +89,12 @@ final class WeatherViewController: UIViewController, CLLocationManagerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        Констрейнты на весь контроллер
+        //        Фон нашего view
+        view.backgroundColor = .white
+        //        Добавляем WeatherView в view
+        view.addSubview(weatherView)
+        
+        //        Привязка WeatherView к экранау
         weatherView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
