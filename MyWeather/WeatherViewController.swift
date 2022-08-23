@@ -119,7 +119,7 @@ final class WeatherViewController: UIViewController, CLLocationManagerDelegate, 
     
     //    По нажатию на кнопку ввода город с текстового поля будет передан в GET запрос
     @objc private func myButtonPressed(_ sender: UIButton) {
-        getTextNameCity { [unowned self] (city) in
+        getCityName { [unowned self] (city) in
             self.dataFetcherService.fetchCurrentWeather(forRequstType: .cityName(city: city))
         }
     }
