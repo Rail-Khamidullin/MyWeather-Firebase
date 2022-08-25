@@ -11,14 +11,8 @@ import SnapKit
 
 final class WeatherView: UIView {
     
-    //    Основная вьюшка
-    private let view: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        return view
-    }()
     //    Скролл Вью
-    private let scrollView = UIScrollView()
+    let scrollView = UIScrollView()
     //    Фон экрана
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -27,7 +21,7 @@ final class WeatherView: UIView {
         return imageView
     }()
     //    Вьюшка с рисунком обозначающую погоду
-    private let weatherIconImageView: UIImageView = {
+    let weatherIconImageView: UIImageView = {
         let weatherIconImageView = UIImageView()
         weatherIconImageView.image = UIImage.init(systemName: "nosign")
         weatherIconImageView.tintColor = UIColor(named: "Text color")
@@ -211,7 +205,7 @@ final class WeatherView: UIView {
         return sunsetLabelTime
     }()
     //    Поле для ввода города
-    private let cityTextField: UITextField = {
+    let cityTextField: UITextField = {
         let cityTextField = UITextField()
         cityTextField.placeholder = "Введите город"
         cityTextField.textAlignment = .center
@@ -244,9 +238,9 @@ final class WeatherView: UIView {
         configureView()
         //        Размещение объектов на экране
         makeConstraints()
-        
     }
     
+    //    Обязательный инициализатор
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -254,7 +248,9 @@ final class WeatherView: UIView {
     //    Добавление объектов на экран
     private func configureView() {
         
-        view.addSubview(scrollView)
+        addSubview(scrollView)
+        //        Метод тоже работает
+        //        insertSubview(scrollView, at: .zero)
         scrollView.addSubview(imageView)
         scrollView.addSubview(weatherIconImageView)
         scrollView.addSubview(mainStackView)

@@ -11,65 +11,8 @@ import CoreLocation
 
 final class WeatherViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
     
-    //    Скролл
-    var scrollView = UIScrollView()
-    //    Основная вьюшка на весь экран
-    var imageView = UIImageView()
-    //    Картинка отображения погодных условий
-    var weatherIconImageView = UIImageView()
-    //    Главный стек
-    var mainStackView = UIStackView()
-    //    Стек для температуры
-    var tempStackView = UIStackView()
-    //    Лейбл температуры
-    var tempLable = UILabel()
-    //    Текущая температура
-    var tempCurrentLable = UILabel()
-    //    Стек для ощущаемой температуры
-    var feelsStackView = UIStackView()
-    //    Ощущаемая температура
-    var feelsTempLable = UILabel()
-    //    Текущая ощущаемая температура
-    var feelsCurrentTempLable = UILabel()
-    //    Стек для давления
-    var pressureStackView = UIStackView()
-    //    Атмосферное давление
-    var pressureLable = UILabel()
-    //    Текущее давление
-    var pressureCurrentLable = UILabel()
-    //    Стек для ветра
-    var windStackView = UIStackView()
-    //    Скорость ветра
-    var windLable = UILabel()
-    //    Текущая скорость ветра
-    var windCurrentLable = UILabel()
-    //    Погодное описание
-    var condition = UILabel()
-    //    Стек влажности
-    var humidityStackView = UIStackView()
-    //    Влажность
-    var humidityLable = UILabel()
-    //    Текущая влажность
-    var currentHumidityLable = UILabel()
-    //    Стек с рассветом
-    var sunriseStackView = UIStackView()
-    //    Рассвет
-    var sunriseLable = UILabel()
-    //    Врремя рассвета
-    var sunriseLableTime = UILabel()
-    //    Стек с закатом
-    var sunsetStackView = UIStackView()
-    //    Закат
-    var sunsetLable = UILabel()
-    //    Врремя заката
-    var sunsetLableTime = UILabel()
-    //    Поле для ввода города
-    var cityTextField = UITextField()
-    //    Кнопка поиска погоды
-    var searchWeatherButton = UIButton(type: .system)
-    
     //    Инициализируем WeatherView
-    private let weatherView = WeatherView()
+    let weatherView = WeatherView()
     
     //    Создаём экземпляр класса DataFetcherService
     let dataFetcherService = DataFetcherService()
@@ -104,7 +47,7 @@ final class WeatherViewController: UIViewController, CLLocationManagerDelegate, 
         //        Получение данных по клавиатуре
         connectToNotificationCenter()
         
-        cityTextField.delegate = self
+        weatherView.cityTextField.delegate = self
         
         //        Вызов метода, который обновит интерфейс приложения по полученным данным с сервера
         dataFetcherService.onCompletion = { [weak self] currentWeather in
@@ -112,12 +55,12 @@ final class WeatherViewController: UIViewController, CLLocationManagerDelegate, 
             self.weatherView.updateInterfaceWith(weather: currentWeather)
         }
         //        Добавим таргет к кнопке поиска погоды
-        searchWeatherButton.addTarget(self, action: #selector(myButtonPressed(_:)), for: .primaryActionTriggered)
+        weatherView.searchWeatherButton.addTarget(self, action: #selector(myButtonPressed(_:)), for: .primaryActionTriggered)
         //        Добавим анимацию для картинки с погодными условиями
-        animate.animateAnyObjects(animateObject: weatherIconImageView)
+        animate.animateAnyObjects(animateObject: weatherView.weatherIconImageView)
     }
     
-    //    По нажатию на кнопку ввода город с текстового поля будет передан в GET запрос
+    //    По нажатию на кнопку ввода, город с текстового поля будет передан в GET запрос
     @objc private func myButtonPressed(_ sender: UIButton) {
         getCityName { [unowned self] (city) in
             self.dataFetcherService.fetchCurrentWeather(forRequstType: .cityName(city: city))

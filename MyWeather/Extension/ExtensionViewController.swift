@@ -12,13 +12,13 @@ import CoreLocation
 
 extension WeatherViewController {
     
-    //    Метод для открытия и скрытия клавиатуры по нажатию на кнопку returne
+    //    Метод для поднятия на необходимую высоту и скрытия клавиатуры по нажатию на кнопку return
     func tapGester() {
         //        Скрытие клавиатуры по нажатию на экран
         let tapGesterRecognizer = UITapGestureRecognizer(target: self, action: #selector(keyboardWillHide))
         view.addGestureRecognizer(tapGesterRecognizer)
         //        Скрытие клавиатуры по нажатию на кнопку ввод
-        cityTextField.addTarget(self, action: #selector(keyboardWillHide), for: .primaryActionTriggered)
+        weatherView.cityTextField.addTarget(self, action: #selector(keyboardWillHide), for: .primaryActionTriggered)
     }
     //    Получение данных по клавиатуре
     func connectToNotificationCenter() {
@@ -38,19 +38,19 @@ extension WeatherViewController {
         guard let userInfo = notification.userInfo,
               let keyboardHeihgt = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
         
-        scrollView.contentInset.bottom = keyboardHeihgt.height + 5
+        weatherView.scrollView.contentInset.bottom = keyboardHeihgt.height + 5
     }
     
     //    Скрытие клавиатуры
     @objc private func keyboardWillHide() {
-        scrollView.contentInset.bottom = 0
+        weatherView.scrollView.contentInset.bottom = 0
         view.endEditing(true)
     }
     
     //    Достаём город из текстового поля и передаём далее, предварительно соединив 2 слова в случае если город состоит из двух слов
     func getCityName(completion: @escaping (String) -> ()) {
         
-        guard let cityName = cityTextField.text else { return }
+        guard let cityName = weatherView.cityTextField.text else { return }
         if cityName != "" {
             print(cityName)
             let city = cityName.split(separator: " ").joined(separator: "%20")
@@ -83,8 +83,8 @@ extension WeatherViewController {
     //    MARK: - UITextFieldDelegate
     
     //    Очистка текстового поля при новом обращению к нему
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        cityTextField.text = ""
+    private func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        weatherView.cityTextField.text = ""
         return true
     }
 }
