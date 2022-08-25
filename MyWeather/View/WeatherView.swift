@@ -49,20 +49,20 @@ final class WeatherView: UIView {
         return stackView
     }()
     //    Температура
-    private let tempLable: UILabel = {
-        let tempLable = UILabel()
-        tempLable.text = "Температура, °C"
-        tempLable.font = UIFont.systemFont(ofSize: 17)
-        tempLable.textColor = UIColor(named: "Text color")
-        return tempLable
+    private let tempLabel: UILabel = {
+        let tempLabel = UILabel()
+        tempLabel.text = "Температура, °C"
+        tempLabel.font = UIFont.systemFont(ofSize: 17)
+        tempLabel.textColor = UIColor(named: "Text color")
+        return tempLabel
     }()
     //    Текущая температура
-    private let tempCurrentLable: UILabel = {
-        let tempLable = UILabel()
-        tempLable.text = "23"
-        tempLable.font = UIFont.systemFont(ofSize: 17)
-        tempLable.textColor = UIColor(named: "Text color")
-        return tempLable
+    private let tempCurrentLabel: UILabel = {
+        let tempCurrentLabel = UILabel()
+        tempCurrentLabel.text = "23"
+        tempCurrentLabel.font = UIFont.systemFont(ofSize: 17)
+        tempCurrentLabel.textColor = UIColor(named: "Text color")
+        return tempCurrentLabel
     }()
     //    Стек для ощущаемой температуры
     private let feelsStackView: UIStackView = {
@@ -72,20 +72,20 @@ final class WeatherView: UIView {
         return stackView
     }()
     //    Ощущаемая температура
-    private let feelsTempLable: UILabel = {
-        let feelsTempLable = UILabel()
-        feelsTempLable.text = "Ощущается, °C"
-        feelsTempLable.font = UIFont.systemFont(ofSize: 17)
-        feelsTempLable.textColor = UIColor(named: "Text color")
-        return feelsTempLable
+    private let feelsTempLabel: UILabel = {
+        let feelsTempLabel = UILabel()
+        feelsTempLabel.text = "Ощущается, °C"
+        feelsTempLabel.font = UIFont.systemFont(ofSize: 17)
+        feelsTempLabel.textColor = UIColor(named: "Text color")
+        return feelsTempLabel
     }()
     //    Текущая ощущаемая температура
-    private let feelsCurrentTempLable: UILabel = {
-        let feelsTempLable = UILabel()
-        feelsTempLable.text = "25"
-        feelsTempLable.font = UIFont.systemFont(ofSize: 17)
-        feelsTempLable.textColor = UIColor(named: "Text color")
-        return feelsTempLable
+    private let feelsCurrentTempLabel: UILabel = {
+        let feelsCurrentTempLabel = UILabel()
+        feelsCurrentTempLabel.text = "25"
+        feelsCurrentTempLabel.font = UIFont.systemFont(ofSize: 17)
+        feelsCurrentTempLabel.textColor = UIColor(named: "Text color")
+        return feelsCurrentTempLabel
     }()
     //    Стек для давления
     private let pressureStackView: UIStackView = {
@@ -95,20 +95,20 @@ final class WeatherView: UIView {
         return stackView
     }()
     //    Атмосферное давление
-    private let pressureLable: UILabel = {
-        let pressureLable = UILabel()
-        pressureLable.text = "Давление, гПа"
-        pressureLable.font = UIFont.systemFont(ofSize: 17)
-        pressureLable.textColor = UIColor(named: "Text color")
-        return pressureLable
+    private let pressureLabel: UILabel = {
+        let pressureLabel = UILabel()
+        pressureLabel.text = "Давление, гПа"
+        pressureLabel.font = UIFont.systemFont(ofSize: 17)
+        pressureLabel.textColor = UIColor(named: "Text color")
+        return pressureLabel
     }()
     //    Текущее атмосферное давление
-    private let pressureCurrentLable: UILabel = {
-        let pressureLable = UILabel()
-        pressureLable.text = "746"
-        pressureLable.font = UIFont.systemFont(ofSize: 17)
-        pressureLable.textColor = UIColor(named: "Text color")
-        return pressureLable
+    private let pressureCurrentLabel: UILabel = {
+        let pressureCurrentLabel = UILabel()
+        pressureCurrentLabel.text = "746"
+        pressureCurrentLabel.font = UIFont.systemFont(ofSize: 17)
+        pressureCurrentLabel.textColor = UIColor(named: "Text color")
+        return pressureCurrentLabel
     }()
     //    Стек для ветра
     private let windStackView: UIStackView = {
@@ -118,20 +118,20 @@ final class WeatherView: UIView {
         return stackView
     }()
     //    Скорость ветра
-    private let windLable: UILabel = {
-        let windLable = UILabel()
-        windLable.text = "Скорость ветра, м/с"
-        windLable.font = UIFont.systemFont(ofSize: 17)
-        windLable.textColor = UIColor(named: "Text color")
-        return windLable
+    private let windLabel: UILabel = {
+        let windLabel = UILabel()
+        windLabel.text = "Скорость ветра, м/с"
+        windLabel.font = UIFont.systemFont(ofSize: 17)
+        windLabel.textColor = UIColor(named: "Text color")
+        return windLabel
     }()
     //    Текущая скорость ветра
-    private let windCurrentLable: UILabel = {
-        let windLable = UILabel()
-        windLable.text = "5"
-        windLable.font = UIFont.systemFont(ofSize: 17)
-        windLable.textColor = UIColor(named: "Text color")
-        return windLable
+    private let windCurrentLabel: UILabel = {
+        let windCurrentLabel = UILabel()
+        windCurrentLabel.text = "5"
+        windCurrentLabel.font = UIFont.systemFont(ofSize: 17)
+        windCurrentLabel.textColor = UIColor(named: "Text color")
+        return windCurrentLabel
     }()
     //    Стек с влажностью воздуха
     private let humidityStack: UIStackView = {
@@ -141,28 +141,28 @@ final class WeatherView: UIView {
         return stackView
     }()
     //    Влажность воздуха
-    private let humidityLable: UILabel = {
-        let humidity = UILabel()
-        humidity.text = "Влажность воздуха, %"
-        humidity.font = UIFont.systemFont(ofSize: 17)
-        humidity.textColor = UIColor(named: "Text color")
-        return humidity
+    private let humidityLabel: UILabel = {
+        let humidityLabel = UILabel()
+        humidityLabel.text = "Влажность воздуха, %"
+        humidityLabel.font = UIFont.systemFont(ofSize: 17)
+        humidityLabel.textColor = UIColor(named: "Text color")
+        return humidityLabel
     }()
     //    Текущая влажность воздуха
-    private let currentHumidityLable: UILabel = {
-        let humidity = UILabel()
-        humidity.text = "35"
-        humidity.font = UIFont.systemFont(ofSize: 17)
-        humidity.textColor = UIColor(named: "Text color")
-        return humidity
+    private let currentHumidityLabel: UILabel = {
+        let currentHumidityLabel = UILabel()
+        currentHumidityLabel.text = "35"
+        currentHumidityLabel.font = UIFont.systemFont(ofSize: 17)
+        currentHumidityLabel.textColor = UIColor(named: "Text color")
+        return currentHumidityLabel
     }()
     //    Описание погоды
-    private let condition: UILabel = {
-        let condition = UILabel()
-        condition.text = "Описание"
-        condition.font = UIFont.systemFont(ofSize: 17)
-        condition.textColor = UIColor(named: "Text color")
-        return condition
+    private let conditionLabel: UILabel = {
+        let conditionLabel = UILabel()
+        conditionLabel.text = "Описание"
+        conditionLabel.font = UIFont.systemFont(ofSize: 17)
+        conditionLabel.textColor = UIColor(named: "Text color")
+        return conditionLabel
     }()
     //    Стек с рассветом
     private let sunriseStack: UIStackView = {
@@ -172,20 +172,20 @@ final class WeatherView: UIView {
         return sunriseStack
     }()
     //    Рассвет
-    private let sunriseLable: UILabel = {
-        let sunriseLable = UILabel()
-        sunriseLable.text = "Рассвет, час:мин:сек"
-        sunriseLable.font = UIFont.systemFont(ofSize: 17)
-        sunriseLable.textColor = UIColor(named: "Text color")
-        return sunriseLable
+    private let sunriseLabel: UILabel = {
+        let sunriseLabel = UILabel()
+        sunriseLabel.text = "Рассвет, час:мин:сек"
+        sunriseLabel.font = UIFont.systemFont(ofSize: 17)
+        sunriseLabel.textColor = UIColor(named: "Text color")
+        return sunriseLabel
     }()
     //    Время рассвета
-    private let sunriseLableTime: UILabel = {
-        let sunriseLableTime = UILabel()
-        sunriseLableTime.text = "04:22:31"
-        sunriseLableTime.font = UIFont.systemFont(ofSize: 17)
-        sunriseLableTime.textColor = UIColor(named: "Text color")
-        return sunriseLableTime
+    private let sunriseLabelTime: UILabel = {
+        let sunriseLabelTime = UILabel()
+        sunriseLabelTime.text = "04:22:31"
+        sunriseLabelTime.font = UIFont.systemFont(ofSize: 17)
+        sunriseLabelTime.textColor = UIColor(named: "Text color")
+        return sunriseLabelTime
     }()
     //    Стек с закатом
     private let sunsetStack: UIStackView = {
@@ -195,20 +195,20 @@ final class WeatherView: UIView {
         return sunsetStack
     }()
     //    Закат
-    private let sunsetLable: UILabel = {
-        let sunsetLable = UILabel()
-        sunsetLable.text = "Закат, час:мин:сек"
-        sunsetLable.font = UIFont.systemFont(ofSize: 17)
-        sunsetLable.textColor = UIColor(named: "Text color")
-        return sunsetLable
+    private let sunsetLabel: UILabel = {
+        let sunsetLabel = UILabel()
+        sunsetLabel.text = "Закат, час:мин:сек"
+        sunsetLabel.font = UIFont.systemFont(ofSize: 17)
+        sunsetLabel.textColor = UIColor(named: "Text color")
+        return sunsetLabel
     }()
     //    Время заката
-    private let sunsetLableTime: UILabel = {
-        let sunsetLableTime = UILabel()
-        sunsetLableTime.text = "21:10:15"
-        sunsetLableTime.font = UIFont.systemFont(ofSize: 17)
-        sunsetLableTime.textColor = UIColor(named: "Text color")
-        return sunsetLableTime
+    private let sunsetLabelTime: UILabel = {
+        let sunsetLabelTime = UILabel()
+        sunsetLabelTime.text = "21:10:15"
+        sunsetLabelTime.font = UIFont.systemFont(ofSize: 17)
+        sunsetLabelTime.textColor = UIColor(named: "Text color")
+        return sunsetLabelTime
     }()
     //    Поле для ввода города
     private let cityTextField: UITextField = {
@@ -265,21 +265,21 @@ final class WeatherView: UIView {
         mainStackView.addArrangedSubview(humidityStack)
         mainStackView.addArrangedSubview(sunriseStack)
         mainStackView.addArrangedSubview(sunsetStack)
-        tempStackView.addArrangedSubview(tempLable)
-        tempStackView.addArrangedSubview(tempCurrentLable)
-        feelsStackView.addArrangedSubview(feelsTempLable)
-        feelsStackView.addArrangedSubview(feelsCurrentTempLable)
-        pressureStackView.addArrangedSubview(pressureLable)
-        pressureStackView.addArrangedSubview(pressureCurrentLable)
-        windStackView.addArrangedSubview(windLable)
-        windStackView.addArrangedSubview(windCurrentLable)
-        humidityStack.addArrangedSubview(humidityLable)
-        humidityStack.addArrangedSubview(currentHumidityLable)
-        sunriseStack.addArrangedSubview(sunriseLable)
-        sunriseStack.addArrangedSubview(sunriseLableTime)
-        sunsetStack.addArrangedSubview(sunsetLable)
-        sunsetStack.addArrangedSubview(sunsetLableTime)
-        mainStackView.addArrangedSubview(condition)
+        tempStackView.addArrangedSubview(tempLabel)
+        tempStackView.addArrangedSubview(tempCurrentLabel)
+        feelsStackView.addArrangedSubview(feelsTempLabel)
+        feelsStackView.addArrangedSubview(feelsCurrentTempLabel)
+        pressureStackView.addArrangedSubview(pressureLabel)
+        pressureStackView.addArrangedSubview(pressureCurrentLabel)
+        windStackView.addArrangedSubview(windLabel)
+        windStackView.addArrangedSubview(windCurrentLabel)
+        humidityStack.addArrangedSubview(humidityLabel)
+        humidityStack.addArrangedSubview(currentHumidityLabel)
+        sunriseStack.addArrangedSubview(sunriseLabel)
+        sunriseStack.addArrangedSubview(sunriseLabelTime)
+        sunsetStack.addArrangedSubview(sunsetLabel)
+        sunsetStack.addArrangedSubview(sunsetLabelTime)
+        mainStackView.addArrangedSubview(conditionLabel)
         scrollView.addSubview(cityTextField)
         scrollView.addSubview(searchWeatherButton)
     }
@@ -312,35 +312,35 @@ final class WeatherView: UIView {
             maker.height.equalTo(237)
         }
         //        Температура
-        tempLable.snp.makeConstraints { (maker) in
+        tempLabel.snp.makeConstraints { (maker) in
             maker.width.equalTo(200)
         }
         //        Ощущаемая температура
-        feelsTempLable.snp.makeConstraints { (maker) in
+        feelsTempLabel.snp.makeConstraints { (maker) in
             maker.width.equalTo(200)
         }
         //        Давление
-        pressureLable.snp.makeConstraints { (maker) in
+        pressureLabel.snp.makeConstraints { (maker) in
             maker.width.equalTo(200)
         }
         //        Скорость ветра
-        windLable.snp.makeConstraints { (maker) in
+        windLabel.snp.makeConstraints { (maker) in
             maker.width.equalTo(200)
         }
         //        Рассвет
-        sunriseLable.snp.makeConstraints { (maker) in
+        sunriseLabel.snp.makeConstraints { (maker) in
             maker.width.equalTo(200)
         }
         //        Закат
-        sunsetLable.snp.makeConstraints { (maker) in
+        sunsetLabel.snp.makeConstraints { (maker) in
             maker.width.equalTo(200)
         }
         //        Описание
-        condition.snp.makeConstraints { (maker) in
+        conditionLabel.snp.makeConstraints { (maker) in
             maker.width.equalToSuperview()
         }
         //        Влажность
-        humidityLable.snp.makeConstraints { (maker) in
+        humidityLabel.snp.makeConstraints { (maker) in
             maker.width.equalTo(200)
         }
         //        Поле для ввода города
@@ -362,15 +362,15 @@ final class WeatherView: UIView {
     func updateInterfaceWith(weather: CurrentWeather) {
         
         DispatchQueue.main.async {
-            self.tempCurrentLable.text = weather.currentTemperature
-            self.feelsCurrentTempLable.text = weather.currentFeelsTemperature
-            self.pressureCurrentLable.text = weather.currentPressure
-            self.windCurrentLable.text = weather.currentSpeedWind
+            self.tempCurrentLabel.text = weather.currentTemperature
+            self.feelsCurrentTempLabel.text = weather.currentFeelsTemperature
+            self.pressureCurrentLabel.text = weather.currentPressure
+            self.windCurrentLabel.text = weather.currentSpeedWind
             self.weatherIconImageView.image = UIImage(systemName: weather.systemIconNameString)
-            self.currentHumidityLable.text = weather.currentHumidity
-            self.condition.text = weather.dictionaryWeather
-            self.sunriseLableTime.text = weather.currentSunrise
-            self.sunsetLableTime.text = weather.currentSunset
+            self.currentHumidityLabel.text = weather.currentHumidity
+            self.conditionLabel.text = weather.dictionaryWeather
+            self.sunriseLabelTime.text = weather.currentSunrise
+            self.sunsetLabelTime.text = weather.currentSunset
         }
     }
 }
