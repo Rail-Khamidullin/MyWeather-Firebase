@@ -20,16 +20,16 @@ protocol DataFetcher {
 //   Класс, который возвращает декодированные данные для любой модели
 final class NetworkDataFetcher: DataFetcher {
     
-//    Установим внешнюю зависимость, таким образом класс будет зависеть от Абстракции (protocol)
+    //    Установим внешнюю зависимость, таким образом класс будет зависеть от Абстракции (protocol)
     fileprivate let networking: Networking
     
-//    Создаём конструктор для нашей абстрактной зависимости от Network, которая равна классу NetworkService
+    //    Создаём конструктор для нашей абстрактной зависимости от Network, которая равна классу NetworkService
     init(networking: Networking = NetworkService()) {
         
         self.networking = networking
     }
     
-//     GET запрос
+    //     GET запрос
     func genericJSONData<T: Decodable>(urlString: String, response: @escaping (T?) -> ()) {
         
         networking.request(urlString: urlString) { [weak self] (data, error) in
@@ -37,14 +37,14 @@ final class NetworkDataFetcher: DataFetcher {
                 print("Error recived requesting data \(error.localizedDescription)")
                 response(nil)
             }
-//            Получаем декодированные данные и передаём далее
+            //            Получаем декодированные данные и передаём далее
             let decoded = self?.genericDecodeJSON(type: T.self, data: data)
             response(decoded)
         }
     }
     
-//    Декодируем данные
-    func genericDecodeJSON<T: Decodable>(type: T.Type, data: Data?) -> T? {
+    //    Декодируем данные
+    private func genericDecodeJSON<T: Decodable>(type: T.Type, data: Data?) -> T? {
         
         let jsonDecoder = JSONDecoder()
         guard let data = data else {
@@ -54,13 +54,11 @@ final class NetworkDataFetcher: DataFetcher {
             return nil
         }
         
-//        let string = String(data: data, encoding: .utf8)
-//        print(string)
-        
         do {
+            //            Если декодировать удалось,
             let objects = try jsonDecoder.decode(type.self, from: data)
+            //            то возвращаем декодированные данные
             return objects
-            
         } catch {
             print(error)
         }
