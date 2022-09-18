@@ -6,5 +6,6 @@
 //
 
 import Foundation
+
 //  Апи
 let weatherApiKey = "2ad2e766837045677820ed8875b00742"

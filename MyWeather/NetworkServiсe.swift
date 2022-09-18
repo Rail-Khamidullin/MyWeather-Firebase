@@ -24,7 +24,7 @@ final class NetworkService: Networking {
     func request(urlString: String, completion: @escaping (Data?, Error?) -> ()) {
         
         guard let url = URL(string: urlString) else { return }
-        
+//        Создаём URLRequest
         let request = URLRequest(url: url)
         
         let task = self.createDataTask(from: request, completion: completion)
@@ -35,7 +35,7 @@ final class NetworkService: Networking {
     private func createDataTask(from request: URLRequest, completion: @escaping (Data?, Error?) -> ()) -> URLSessionDataTask {
         //        Создаём сессию
         let urlSession = URLSession(configuration: .default)
-        
+//        Получаем данные и передаём дальше
         let dataTask = urlSession.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
                 completion(data, error)

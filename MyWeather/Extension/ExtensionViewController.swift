@@ -16,10 +16,12 @@ extension WeatherViewController {
     func tapGester() {
         //        Скрытие клавиатуры по нажатию на экран
         let tapGesterRecognizer = UITapGestureRecognizer(target: self, action: #selector(keyboardWillHide))
+        //        Добавить распознавание
         view.addGestureRecognizer(tapGesterRecognizer)
-        //        Скрытие клавиатуры по нажатию на кнопку ввод
+        //        Скрытие клавиатуры по нажатию на кнопку ввод (return)
         weatherView.cityTextField.addTarget(self, action: #selector(keyboardWillHide), for: .primaryActionTriggered)
     }
+    
     //    Получение данных по клавиатуре
     func connectToNotificationCenter() {
         NotificationCenter.default.addObserver(self,
@@ -37,7 +39,7 @@ extension WeatherViewController {
         
         guard let userInfo = notification.userInfo,
               let keyboardHeihgt = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
-        
+        //        Поднимаем наш скрол на высоту клавиатуры + 5 пойнтов
         weatherView.scrollView.contentInset.bottom = keyboardHeihgt.height + 5
     }
     
@@ -52,32 +54,11 @@ extension WeatherViewController {
         
         guard let cityName = weatherView.cityTextField.text else { return }
         if cityName != "" {
-            print(cityName)
+            //            Убираем пробел между словами для поиска города
             let city = cityName.split(separator: " ").joined(separator: "%20")
-            
+            //            Передаём дальше
             return completion(city)
         }
-    }
-}
-
-extension WeatherViewController {
-    
-    ///    Достаём расположение девайса
-    //            Реализуем метод, где отрабатываем различные ситуации с локацией, а именно с отключенной настройкой в девайсе и включенной
-    private func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        //        Получаем последнее месторасположение из массива CLLocation. Геопозиция по широте и долготе
-        guard let location = locations.last else { return }
-        //        Координата широты
-        let latitude = location.coordinate.latitude
-        //        Координата долготы
-        let longitude = location.coordinate.longitude
-        
-        //        Метод чтобы получить погоду по текущему расположению
-        dataFetcherService.fetchCurrentWeather(forRequstType: .coordinate(latitude: latitude, longitude: longitude))
-    }
-    private func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error.localizedDescription)
     }
     
     //    MARK: - UITextFieldDelegate
@@ -86,5 +67,25 @@ extension WeatherViewController {
     private func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         weatherView.cityTextField.text = ""
         return true
+    }
+}
+
+extension WeatherViewController {
+    
+    ///    Достаём расположение девайса
+    //     Реализуем метод, где отрабатываем различные ситуации с локацией, а именно с отключенной и включенной настройкой в девайсе
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        //        Получаем последнее месторасположение из массива CLLocation. Геопозиция по широте и долготе
+        guard let location = locations.last else { return }
+        //        Координата широты
+        let latitude = location.coordinate.latitude
+        //        Координата долготы
+        let longitude = location.coordinate.longitude
+        //        Метод чтобы получить погоду по текущему расположению
+        dataFetcherService.fetchCurrentWeather(forRequstType: .coordinate(latitude: latitude, longitude: longitude))
+    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 import  UIKit
 
-
+//   Структурв с анимацией для любого объекта
 struct Animator {
     
     //MARK: - Animation. Анимация для любого объекта

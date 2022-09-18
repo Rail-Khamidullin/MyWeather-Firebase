@@ -10,7 +10,7 @@ import Foundation
 //   Модель данных куда будем присваивать данные из сервера
 struct CurrentWeather: Decodable {
     
-    //    Город
+    //    Имя города
     let cityName: String
     //    Текущая температура
     let temp: Double
@@ -60,6 +60,7 @@ struct CurrentWeather: Decodable {
     var currentSunrise: String {
         //        Конвертируем полученную данные из Unix в часы, минуты и секунды
         let epochDate = Date(timeIntervalSince1970: TimeInterval(sunrise) as TimeInterval)
+        //        Текущий календарь относительно которого будет определять время
         let calendar = Calendar.current
         //        Часы
         let epochHour = calendar.component(.hour, from: epochDate)
@@ -79,7 +80,7 @@ struct CurrentWeather: Decodable {
         let epochDate = Date(timeIntervalSince1970: TimeInterval(sunset) as TimeInterval)
         //        Для проверки
         print(epochDate)
-        
+        //        Текущий календарь относительно которого будет определять время
         let calendar = Calendar.current
         //        Часы
         let epochHour = calendar.component(.hour, from: epochDate)
