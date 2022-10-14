@@ -52,7 +52,7 @@ final class WeatherViewController: UIViewController, CLLocationManagerDelegate, 
         //        Получение данных по клавиатуре
         connectToNotificationCenter()
         //        Подписал текстовое поле под делегат, для работы дополнительных функций в клавиатуре
-        weatherView.cityTextField.delegate = self
+        weatherView.cityTextField.delegate = self 
         //        Вызов метода, который обновит интерфейс приложения по полученным данных с сервера
         dataFetcherService.onCompletion = { [weak self] currentWeather in
             guard let self = self else { return }

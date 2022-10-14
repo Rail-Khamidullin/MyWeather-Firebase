@@ -14,9 +14,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        let firstViewController = CurrentWeatherViewController()
+        //        Достаём window для дальнейшего отображения контроллера
         window = UIWindow(frame: UIScreen.main.bounds)
-        let rootViewController = WeatherViewController()
+        //        Указываем с какого контроллера появится навигейшн бар
+        let rootViewController = UINavigationController(rootViewController: loginViewController)
+        //        Добираемся до контекста
+        let context = persistentContainer.viewContext
+        //        Передаём контекст в FirstViewController
+        firstViewController.context = context
+        //        Выбираем первый контроллер для отображения
         window?.rootViewController = rootViewController
+        //        Отображаем контроллер
         window?.makeKeyAndVisible()
         return true
     }
