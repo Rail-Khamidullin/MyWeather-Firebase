@@ -13,8 +13,7 @@ final class CurrentWeatherView: UIView {
     
     //    Скролл Вью
     let scrollView: UIScrollView = {
-       var scrollView = UIScrollView()
-        scrollView.isPagingEnabled = true
+        var scrollView = UIScrollView()
         return scrollView
     }()
     //    Фон экрана

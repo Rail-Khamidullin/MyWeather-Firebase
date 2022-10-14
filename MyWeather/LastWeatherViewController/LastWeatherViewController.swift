@@ -23,7 +23,6 @@ class LastWeatherViewController: UIViewController {
     //    Экран будет отображён
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
     }
     
     //    Экран уже загрузился

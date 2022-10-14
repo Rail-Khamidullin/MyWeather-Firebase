@@ -35,6 +35,13 @@ final class CurrentWeatherViewController: UIViewController, CLLocationManagerDel
         return locationManager
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //        Добавим анимацию для картинки с погодными условиями
+        animate.animateAnyObjects(animateObject: currentWeatherView.weatherIconImageView)
+    }
+    
     //    Экран уже загрузился
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,8 +77,6 @@ final class CurrentWeatherViewController: UIViewController, CLLocationManagerDel
         currentWeatherView.lastCityButton.addTarget(self, action: #selector(lastButtonPressed(_:)), for: .primaryActionTriggered)
         //        Настраиваем кнопку навигационного контроллера
         navigationController?.setBackButton(with: "Назад")
-        //        Добавим анимацию для картинки с погодными условиями
-        animate.animateAnyObjects(animateObject: currentWeatherView.weatherIconImageView)
     }
     
     //    Метод по сохранению названия городов в массиве cityArray
@@ -96,7 +101,7 @@ final class CurrentWeatherViewController: UIViewController, CLLocationManagerDel
         } else {
             //            Находим название предпоследнего города из массива
             let nameCity = cityArray[numberBeforeLast]
-            
+            //            Присваиваем введённое название города в массив запросов городов
             cityBeforeLast = nameCity
         }
     }
