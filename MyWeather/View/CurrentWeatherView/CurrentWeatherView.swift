@@ -9,10 +9,14 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class WeatherView: UIView {
+final class CurrentWeatherView: UIView {
     
     //    Скролл Вью
-    let scrollView = UIScrollView()
+    let scrollView: UIScrollView = {
+       var scrollView = UIScrollView()
+        scrollView.isPagingEnabled = true
+        return scrollView
+    }()
     //    Фон экрана
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -23,7 +27,7 @@ final class WeatherView: UIView {
     //    Вьюшка с рисунком обозначающую погоду
     let weatherIconImageView: UIImageView = {
         let weatherIconImageView = UIImageView()
-        weatherIconImageView.image = UIImage.init(systemName: "nosign")
+        weatherIconImageView.image = UIImage(systemName: "nosign")
         weatherIconImageView.tintColor = UIColor(named: "Text color")
         return weatherIconImageView
     }()
@@ -138,7 +142,7 @@ final class WeatherView: UIView {
     private let humidityLabel: UILabel = {
         let humidityLabel = UILabel()
         humidityLabel.text = "Влажность воздуха, %"
-        humidityLabel.font = UIFont.systemFont(ofSize: 17)
+        humidityLabel.font = UIFont.systemFont(ofSize: 16)
         humidityLabel.textColor = UIColor(named: "Text color")
         return humidityLabel
     }()
@@ -146,7 +150,7 @@ final class WeatherView: UIView {
     private let currentHumidityLabel: UILabel = {
         let currentHumidityLabel = UILabel()
         currentHumidityLabel.text = "35"
-        currentHumidityLabel.font = UIFont.systemFont(ofSize: 17)
+        currentHumidityLabel.font = UIFont.systemFont(ofSize: 16)
         currentHumidityLabel.textColor = UIColor(named: "Text color")
         return currentHumidityLabel
     }()
@@ -154,7 +158,7 @@ final class WeatherView: UIView {
     private let conditionLabel: UILabel = {
         let conditionLabel = UILabel()
         conditionLabel.text = "Описание"
-        conditionLabel.font = UIFont.systemFont(ofSize: 17)
+        conditionLabel.font = UIFont.systemFont(ofSize: 16)
         conditionLabel.textColor = UIColor(named: "Text color")
         return conditionLabel
     }()
@@ -169,7 +173,7 @@ final class WeatherView: UIView {
     private let sunriseLabel: UILabel = {
         let sunriseLabel = UILabel()
         sunriseLabel.text = "Рассвет, час:мин:сек"
-        sunriseLabel.font = UIFont.systemFont(ofSize: 17)
+        sunriseLabel.font = UIFont.systemFont(ofSize: 16)
         sunriseLabel.textColor = UIColor(named: "Text color")
         return sunriseLabel
     }()
@@ -177,7 +181,7 @@ final class WeatherView: UIView {
     private let sunriseTimeLabel: UILabel = {
         let sunriseTimeLabel = UILabel()
         sunriseTimeLabel.text = "04:22:31"
-        sunriseTimeLabel.font = UIFont.systemFont(ofSize: 17)
+        sunriseTimeLabel.font = UIFont.systemFont(ofSize: 16)
         sunriseTimeLabel.textColor = UIColor(named: "Text color")
         return sunriseTimeLabel
     }()
@@ -192,7 +196,7 @@ final class WeatherView: UIView {
     private let sunsetLabel: UILabel = {
         let sunsetLabel = UILabel()
         sunsetLabel.text = "Закат, час:мин:сек"
-        sunsetLabel.font = UIFont.systemFont(ofSize: 17)
+        sunsetLabel.font = UIFont.systemFont(ofSize: 16)
         sunsetLabel.textColor = UIColor(named: "Text color")
         return sunsetLabel
     }()
@@ -200,7 +204,7 @@ final class WeatherView: UIView {
     private let sunsetTimeLabel: UILabel = {
         let sunsetTimeLabel = UILabel()
         sunsetTimeLabel.text = "21:10:15"
-        sunsetTimeLabel.font = UIFont.systemFont(ofSize: 17)
+        sunsetTimeLabel.font = UIFont.systemFont(ofSize: 16)
         sunsetTimeLabel.textColor = UIColor(named: "Text color")
         return sunsetTimeLabel
     }()
@@ -209,7 +213,7 @@ final class WeatherView: UIView {
         let cityTextField = UITextField()
         cityTextField.placeholder = "Введите город"
         cityTextField.textAlignment = .center
-        cityTextField.font = UIFont.systemFont(ofSize: 17)
+        cityTextField.font = UIFont.systemFont(ofSize: 16)
         cityTextField.backgroundColor = .white
         cityTextField.textColor = .init(red: 0.4, green: 0.4, blue: 0.45, alpha: 1)
         cityTextField.layer.borderWidth = 2
@@ -229,7 +233,18 @@ final class WeatherView: UIView {
         searchWeatherButton.layer.cornerRadius = 10
         return searchWeatherButton
     }()
-    
+    //    Кнопка для перехода на экран с предыдущим запросом
+    let lastCityButton: UIButton = {
+        let lastCityButton = UIButton(type: .system)
+        lastCityButton.setTitle("Предыдущий запрос", for: [])
+        lastCityButton.titleLabel?.font = .systemFont(ofSize: 16)
+        lastCityButton.backgroundColor = .white
+        lastCityButton.tintColor = .init(red: 0.4, green: 0.4, blue: 0.45, alpha: 1)
+        lastCityButton.layer.borderWidth = 1
+        lastCityButton.layer.borderColor = UIColor.blue.cgColor
+        lastCityButton.layer.cornerRadius = 10
+        return lastCityButton
+    }()
     //    Создаём инициализатор для отображения методов
     init() {
         super.init(frame: .zero)
@@ -276,6 +291,7 @@ final class WeatherView: UIView {
         mainStackView.addArrangedSubview(conditionLabel)
         scrollView.addSubview(cityTextField)
         scrollView.addSubview(searchWeatherButton)
+        scrollView.addSubview(lastCityButton)
     }
     
     //    Расположение объектов на экране
@@ -283,27 +299,27 @@ final class WeatherView: UIView {
         
         //        Скролл
         scrollView.snp.makeConstraints { (maker) in
-            maker.top.equalToSuperview()
-            maker.center.equalToSuperview()
-            maker.width.equalToSuperview()
+            maker.bottom.height.width.equalToSuperview()
+            maker.top.equalTo(44)
         }
         //        Фон
         imageView.snp.makeConstraints { (maker) in
             maker.left.right.top.bottom.equalToSuperview()
             maker.center.equalToSuperview()
+            maker.height.greaterThanOrEqualTo(520)
         }
         //        Иконка с погодой
         weatherIconImageView.snp.makeConstraints { (maker) in
-            maker.top.equalToSuperview().inset(20)
+            maker.top.equalToSuperview().inset(10)
             maker.centerX.equalToSuperview()
-            maker.height.width.equalTo(140)
+            maker.height.width.equalTo(115)
         }
         //        Главный стек
         mainStackView.snp.makeConstraints { (maker) in
             maker.left.right.equalToSuperview().inset(10)
-            maker.top.equalTo(weatherIconImageView.snp.bottom).offset(5)
+            maker.top.equalTo(weatherIconImageView.snp.bottom).offset(0)
             maker.centerX.equalToSuperview()
-            maker.height.equalTo(237)
+            maker.height.equalTo(226)
         }
         //        Температура
         tempLabel.snp.makeConstraints { (maker) in
@@ -341,13 +357,20 @@ final class WeatherView: UIView {
         cityTextField.snp.makeConstraints { (maker) in
             maker.centerX.equalToSuperview()
             maker.left.right.equalToSuperview().inset(20)
-            maker.top.equalTo(mainStackView.snp.bottom).offset(20)
+            maker.top.equalTo(mainStackView.snp.bottom).offset(15)
         }
         //        Кнопка поиска погоды
         searchWeatherButton.snp.makeConstraints { (maker) in
-            maker.top.equalTo(cityTextField.snp.bottom).offset(20)
-            maker.width.equalTo(100)
-            maker.height.equalTo(35)
+            maker.top.equalTo(cityTextField.snp.bottom).offset(15)
+            maker.width.equalTo(200)
+            maker.height.equalTo(30)
+            maker.centerX.equalToSuperview()
+        }
+        //        Кнопка перехода на другой контроллер
+        lastCityButton.snp.makeConstraints { (maker) in
+            maker.top.equalTo(searchWeatherButton.snp.bottom).offset(15)
+            maker.width.equalTo(200)
+            maker.height.equalTo(30)
             maker.centerX.equalToSuperview()
         }
     }

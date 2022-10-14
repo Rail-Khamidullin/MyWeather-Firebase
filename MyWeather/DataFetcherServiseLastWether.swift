@@ -8,10 +8,10 @@
 import Foundation
 
 //   Класс реализует GET запрос и обновление интерфейса
-final class DataFetcherServiceSC {
+final class DataFetcherServiceLastController {
     
     //    Создаём клоужер, который принимает структуру CurrentWeather
-    var onCompletionSC: ((CurrentWeather) -> ())?
+    var onCompletionLastController: ((CurrentWeather) -> ())?
     
     //    Создаём внешнюю зависимость
     var dataFetcher: DataFetcher
@@ -30,7 +30,7 @@ final class DataFetcherServiceSC {
             if let currentWeatherData = currentWeatherData {
                 //                Передаём в форму нашей текущей погоды данные по текущей погоде с сервера
                 guard let currentWeather = CurrentWeather(currentWeatherData: currentWeatherData) else { return }
-                self?.onCompletionSC?(currentWeather)
+                self?.onCompletionLastController?(currentWeather)
             }
         }
     }

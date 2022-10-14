@@ -24,8 +24,8 @@ final class LastWeatherView: UIView {
     //    Вьюшка с рисунком обозначающую погоду
     let weatherIconImageView: UIImageView = {
         let weatherIconImageView = UIImageView()
-        weatherIconImageView.image = UIImage.init(systemName: "nosign")
-        weatherIconImageView.tintColor = UIColor.init(named: "Color")
+        weatherIconImageView.image = UIImage(systemName: "nosign")
+        weatherIconImageView.tintColor = UIColor(named: "Text color")
         return weatherIconImageView
     }()
     //    Главный стек
@@ -51,7 +51,7 @@ final class LastWeatherView: UIView {
         let tempLabel = UILabel()
         tempLabel.text = "Температура, °C"
         tempLabel.font = UIFont.systemFont(ofSize: 17)
-        tempLabel.textColor = UIColor.init(named: "Color")
+        tempLabel.textColor = UIColor(named: "Text color")
         return tempLabel
     }()
     //    Текущая температура
@@ -59,7 +59,7 @@ final class LastWeatherView: UIView {
         let tempCurrentLabel = UILabel()
         tempCurrentLabel.text = "23"
         tempCurrentLabel.font = UIFont.systemFont(ofSize: 17)
-        tempCurrentLabel.textColor = UIColor.init(named: "Color")
+        tempCurrentLabel.textColor = UIColor(named: "Text color")
         return tempCurrentLabel
     }()
     //    Стек для ощущаемой температуры
@@ -75,7 +75,7 @@ final class LastWeatherView: UIView {
         let feelsTempLabel = UILabel()
         feelsTempLabel.text = "Ощущается, °C"
         feelsTempLabel.font = UIFont.systemFont(ofSize: 17)
-        feelsTempLabel.textColor = UIColor.init(named: "Color")
+        feelsTempLabel.textColor = UIColor(named: "Text color")
         return feelsTempLabel
     }()
     //    Текущая ощущаемая температура
@@ -83,7 +83,7 @@ final class LastWeatherView: UIView {
         let feelsCurrentTempLabel = UILabel()
         feelsCurrentTempLabel.text = "25"
         feelsCurrentTempLabel.font = UIFont.systemFont(ofSize: 17)
-        feelsCurrentTempLabel.textColor = UIColor.init(named: "Color")
+        feelsCurrentTempLabel.textColor = UIColor(named: "Text color")
         return feelsCurrentTempLabel
     }()
     //    Стек для давления
@@ -99,7 +99,7 @@ final class LastWeatherView: UIView {
         let pressureLabel = UILabel()
         pressureLabel.text = "Давление, гПа"
         pressureLabel.font = UIFont.systemFont(ofSize: 17)
-        pressureLabel.textColor = UIColor.init(named: "Color")
+        pressureLabel.textColor = UIColor(named: "Text color")
         return pressureLabel
     }()
     //    Текущее атмосферное давление
@@ -107,7 +107,7 @@ final class LastWeatherView: UIView {
         let pressureCurrentLabel = UILabel()
         pressureCurrentLabel.text = "746"
         pressureCurrentLabel.font = UIFont.systemFont(ofSize: 17)
-        pressureCurrentLabel.textColor = UIColor.init(named: "Color")
+        pressureCurrentLabel.textColor = UIColor(named: "Text color")
         return pressureCurrentLabel
     }()
     //    Стек для ветра
@@ -123,7 +123,7 @@ final class LastWeatherView: UIView {
         let windLabel = UILabel()
         windLabel.text = "Скорость ветра, м/с"
         windLabel.font = UIFont.systemFont(ofSize: 17)
-        windLabel.textColor = UIColor.init(named: "Color")
+        windLabel.textColor = UIColor(named: "Text color")
         return windLabel
     }()
     //    Текущая скорость ветра
@@ -131,7 +131,7 @@ final class LastWeatherView: UIView {
         let windCurrentLabel = UILabel()
         windCurrentLabel.text = "5"
         windCurrentLabel.font = UIFont.systemFont(ofSize: 17)
-        windCurrentLabel.textColor = UIColor.init(named: "Color")
+        windCurrentLabel.textColor = UIColor(named: "Text color")
         return windCurrentLabel
     }()
     //    Стек с влажностью воздуха
@@ -147,7 +147,7 @@ final class LastWeatherView: UIView {
         let humidityLabel = UILabel()
         humidityLabel.text = "Влажность воздуха, %"
         humidityLabel.font = UIFont.systemFont(ofSize: 17)
-        humidityLabel.textColor = UIColor.init(named: "Color")
+        humidityLabel.textColor = UIColor(named: "Text color")
         return humidityLabel
     }()
     //    Текущая влажность воздуха
@@ -155,7 +155,7 @@ final class LastWeatherView: UIView {
         let currentHumidityLabel = UILabel()
         currentHumidityLabel.text = "35"
         currentHumidityLabel.font = UIFont.systemFont(ofSize: 17)
-        currentHumidityLabel.textColor = UIColor.init(named: "Color")
+        currentHumidityLabel.textColor = UIColor(named: "Text color")
         return currentHumidityLabel
     }()
     //    Описание погоды
@@ -163,7 +163,7 @@ final class LastWeatherView: UIView {
         let conditionLabel = UILabel()
         conditionLabel.text = "Описание"
         conditionLabel.font = UIFont.systemFont(ofSize: 17)
-        conditionLabel.textColor = UIColor.init(named: "Color")
+        conditionLabel.textColor = UIColor(named: "Text color")
         return conditionLabel
     }()
     //    Стек с рассветом
@@ -179,7 +179,7 @@ final class LastWeatherView: UIView {
         let sunriseLabel = UILabel()
         sunriseLabel.text = "Рассвет, час:мин:сек"
         sunriseLabel.font = UIFont.systemFont(ofSize: 17)
-        sunriseLabel.textColor = UIColor.init(named: "Color")
+        sunriseLabel.textColor = UIColor(named: "Text color")
         return sunriseLabel
     }()
     //    Время рассвета
@@ -187,7 +187,7 @@ final class LastWeatherView: UIView {
         let sunriseTimeLabel = UILabel()
         sunriseTimeLabel.text = "04:22:31"
         sunriseTimeLabel.font = UIFont.systemFont(ofSize: 17)
-        sunriseTimeLabel.textColor = UIColor.init(named: "Color")
+        sunriseTimeLabel.textColor = UIColor(named: "Text color")
         return sunriseTimeLabel
     }()
     //    Стек с закатом
@@ -203,7 +203,7 @@ final class LastWeatherView: UIView {
         let sunsetLabel = UILabel()
         sunsetLabel.text = "Закат, час:мин:сек"
         sunsetLabel.font = UIFont.systemFont(ofSize: 17)
-        sunsetLabel.textColor = UIColor.init(named: "Color")
+        sunsetLabel.textColor = UIColor(named: "Text color")
         return sunsetLabel
     }()
     //    Время заката
@@ -211,7 +211,7 @@ final class LastWeatherView: UIView {
         let sunsetTimeLabel = UILabel()
         sunsetTimeLabel.text = "21:10:15"
         sunsetTimeLabel.font = UIFont.systemFont(ofSize: 17)
-        sunsetTimeLabel.textColor = UIColor.init(named: "Color")
+        sunsetTimeLabel.textColor = UIColor(named: "Text color")
         return sunsetTimeLabel
     }()
     

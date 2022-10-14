@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 
-extension WeatherViewController {
+extension CurrentWeatherViewController {
     
     //    Метод для поднятия на необходимую высоту и скрытия клавиатуры по нажатию на кнопку return
     func tapGester() {
@@ -19,7 +19,7 @@ extension WeatherViewController {
         //        Добавить распознавание
         view.addGestureRecognizer(tapGesterRecognizer)
         //        Скрытие клавиатуры по нажатию на кнопку ввод (return)
-        weatherView.cityTextField.addTarget(self, action: #selector(keyboardWillHide), for: .primaryActionTriggered)
+        currentWeatherView.cityTextField.addTarget(self, action: #selector(keyboardWillHide), for: .primaryActionTriggered)
     }
     
     //    Получение данных по клавиатуре
@@ -40,19 +40,19 @@ extension WeatherViewController {
         guard let userInfo = notification.userInfo,
               let keyboardHeihgt = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
         //        Поднимаем наш скрол на высоту клавиатуры + 5 пойнтов
-        weatherView.scrollView.contentInset.bottom = keyboardHeihgt.height + 5
+        currentWeatherView.scrollView.contentInset.bottom = keyboardHeihgt.height + 49
     }
     
     //    Скрытие клавиатуры
     @objc private func keyboardWillHide() {
-        weatherView.scrollView.contentInset.bottom = 0
+        currentWeatherView.scrollView.contentInset.bottom = 0
         view.endEditing(true)
     }
     
     //    Достаём город из текстового поля и передаём далее, предварительно соединив 2 слова в случае если город состоит из двух слов
     func getCityName(completion: @escaping (String) -> ()) {
         
-        guard let cityName = weatherView.cityTextField.text else { return }
+        guard let cityName = currentWeatherView.cityTextField.text else { return }
         if cityName != "" {
             //            Убираем пробел между словами для поиска города
             let city = cityName.split(separator: " ").joined(separator: "%20")
@@ -64,13 +64,13 @@ extension WeatherViewController {
     //    MARK: - UITextFieldDelegate
     
     //    Очистка текстового поля при новом обращению к нему
-    private func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        weatherView.cityTextField.text = ""
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        currentWeatherView.cityTextField.text = ""
         return true
     }
 }
 
-extension WeatherViewController {
+extension CurrentWeatherViewController {
     
     ///    Достаём расположение девайса
     //     Реализуем метод, где отрабатываем различные ситуации с локацией, а именно с отключенной и включенной настройкой в девайсе

@@ -18,7 +18,7 @@ class LastWeatherViewController: UIViewController {
     //    Создаём экземпляр структуры с анимацией
     let animate = Animator()
     //    Создаём экземпляр с запросом погоды
-    let dataFetcherServiceSC = DataFetcherServiceSC()
+    let dataFetcherServiceLastController = DataFetcherServiceLastController()
     
     //    Экран будет отображён
     override func viewWillAppear(_ animated: Bool) {
@@ -41,11 +41,11 @@ class LastWeatherViewController: UIViewController {
             maker.edges.equalToSuperview()
         }
         //        Передаём город в метод запроса погоды
-        dataFetcherServiceSC.fetchCurrentWeatherSC(forCity: nameCity)
+        dataFetcherServiceLastController.fetchCurrentWeatherSC(forCity: nameCity)
         //        Обновлениие интерфейса по новым данным
-        dataFetcherServiceSC.onCompletionSC = { [weak self] currentWeather in
+        dataFetcherServiceLastController.onCompletionLastController = { [weak self] currentWeather in
             guard let self = self else { return }
-            self.weatherViewSC.updateInterfaceWith(weather: currentWeather)
+            self.lastWeatherView.updateInterfaceWith(weather: currentWeather)
         }
         //        Анимация для иконки с погодными условиями
         animate.animateAnyObjects(animateObject: lastWeatherView.weatherIconImageView)
