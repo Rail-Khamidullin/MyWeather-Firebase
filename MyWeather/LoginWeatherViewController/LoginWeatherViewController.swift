@@ -7,153 +7,125 @@
 
 import UIKit
 import SnapKit
-import CoreLocation
 import Firebase
 
-class LoginWeatherViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate, UIScrollViewDelegate {
+class LoginWeatherViewController: UIViewController {
     
-//    Создаём нового пользвателя
-    var user: Users!
-//    Через референс мы можем добраться до нужных нам данных (некий проводник)
+    //    Константа с идентификатором перехода на другой контроллер
+    let segueIdentifire = "tasksSegue"
+    //    Экземпляр класса с нашими view
+    let loginWeatherView = LoginWeatherView()
+    //    Создаём путь к нахождению данных
     var ref: DatabaseReference!
-//    Создаём массив городов
-    var citiesArray = [City]()
-    //    Создаём св-во для присвоения предпоследнего запроса города
-    var cityBeforeLast: String = ""
-    //    Создаём экземпляр класса LoginWeatherView
-    var loginWeatherView = LoginWeatherView()
-    //    Создаём экземпляр класса DataFetcherService
-    let dataFetcherService = DataFetcherService()
-    //    Создаём экземпляр класса Animate
-    let animate = Animate()
-    //    Создаём менеджера, который будет с приставкой lazy. Если пользователь откажет в предоставлении месторасположения, методы не будут находиться в памяти
-    lazy var locationManager: CLLocationManager = {
-        let locationManager = CLLocationManager()
-        locationManager.delegate = self
-        //    Необходимо указать точность с которой мы хотим получать информацию. kCLLocationAccuracyKilometer укзывает на точность в километр
-        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
-        //        Запрашиваем пользователя к доступу его геопозиции
-        locationManager.requestWhenInUseAuthorization()
-        return locationManager
-    }()
+    //    Создаём экземпляр класса с Анимацией объектов
+    let animator = Animator()
     
-    //    Вызывается, чтобы уведомить ViewController о том, что его view собирается разместить свои subviews
     override func viewWillLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
     }
     
-    //    Экран уже загрузился
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        weatherView.scrollView.panGestureRecognizer.isEnabled = false
-        
-        //        Добавляем объекты на контроллер
-        view.addSubview(weatherView)
-        //        Привязываем объекты к родительскому вью
-        weatherView.snp.makeConstraints { (maker) in
+        view.addSubview(loginWeatherView)
+        loginWeatherView.snp.makeConstraints { (maker) in
+            //            maker.top.equalTo(navigationController?.navigationBar.snp.bottom as! ConstraintRelatableTarget)
+            //            maker.left.right.bottom.equalToSuperview()
             maker.edges.equalToSuperview()
         }
+        
+        //        Создаём доступ через путь "users"
+                ref = Database.database().reference(withPath: "users")
+        
         //        Настраиваем кнопку навигационного контроллера
         navigationController?.setBackButton(with: "Назад")
-        //        Получение данных по клавиатуре
-        connectToNotificationCenter()
-        //        Заливаем наше вью в белый цвет
-        view.backgroundColor = .white
-        //        Ввод текста происходит на английском языке. Метод, который не позволяет открыть клавиатуру на русском
-        weatherView.cityTextField.keyboardType = .asciiCapable
-        //        Текстовое поле будет в роли делегата
-        weatherView.cityTextField.delegate = self
-        //        Вызов метода, который обновит интерфейс приложения по полученным данным с сервера
-        dataFetcherService.onCompletion = { [weak self] currentWeather in
-            guard let self = self else { return }
-            self.weatherView.updateInterfaceWith(weather: currentWeather)
-        }
-        //        У пользователя может быть отключена настройка геопозиции (общая настройка в телефоне), для этого проверяем locationServicesEnabled
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.requestLocation()
-        }
-        //        Добавим таргет к кнопке поиска погоды
-        weatherView.searchWeatherButton.addTarget(self, action: #selector(myButtonPressed(_:)), for: .primaryActionTriggered)
-        //        Добавляем таргет для перехода на следующий экран
-        weatherView.lastCityButton.addTarget(self, action: #selector(lastButtonPressed(_:)), for: .primaryActionTriggered)
-    }
-    
-    //    Экран будет отображён
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
-        //        Скрытие навигейшн бара
-        self.navigationController?.isNavigationBarHidden = false
-        //        Добавим анимацию для картинки с погодными условиями
-        animate.animateAnyObjects(animateObject: self.weatherView.weatherIconImageView)
+        //        Фон вью
+        view.backgroundColor = .white
         //        Метод для открытия и скрытия клавиатуры
         tapGester()
-    }
-    
-//    Создаём пользователя
-    private func newUser() {
+        //        Получение данных по клавиатуре
+        connectToNotificationCenter()
         
-//        Необходимо сделать проверку при создании текущего пользователя
-        guard let currentUser = Auth.auth().currentUser else { return }
-//        Приводим нашего текущего пользователя к Users для получения к нему доступа при необходимости, таким образом мы взяли данные зарегестрированного пользователя и передали в Users, теперь у нас есть доступ к id и email
-        user = Users(users: currentUser)
-//        Получаем доступ к uid и email
-        ref = Database.database().reference(withPath: "users").child(String(user.id)).child("cities")
-    }
-    
-    //    По нажатию на кнопку ввода город с текстового поля будет передан в GET запрос и массив с городами
-    @objc private func myButtonPressed(_ sender: UIButton) {
-        getCityText { [unowned self] (city) in
-            self.dataFetcherService.fetchCurrentWeather(forRequstType: .cityName(city: city))
-            //            Сохранение запроса города в памяти и добавление в массив cityArray
-            saveCity(nameCity: city)
-            //            Обновляем нашу переменную cityBeforeLast
-            addCityBeforeLast()
+        //        Устанавливаем логику входа в приложение через нажатие кнопки входа
+        loginWeatherView.loginButton.addTarget(self, action: #selector(loginTapped), for: .primaryActionTriggered)
+        //        Устанавливаем логику регистрации в приложении
+        loginWeatherView.registrationButton.addTarget(self, action: #selector(registerTapped), for: .primaryActionTriggered)
+        
+        //        Проверяем изменилися ли пользователь и его данные
+        Firebase.Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
+            if user != nil {
+                //                        Создаём экземпляр класса FirstViewController
+                let firstViewController = CurrentWeatherViewController()
+                //                        Совершаем переход
+                self?.navigationController?.pushViewController(firstViewController, animated: true)
+            }
         }
     }
     
-    //    Метод по сохранению названия городов в CoreData и массиве cityArray
-    private func saveCity(nameCity name: String) {
-        
-//        Создаём город
-        let cities = City(title: name, userID: self.user.id)
-//        Указываем расположение задачи на сервере, т.е. создаём референс (ссылку)
-        let cityRef = self.ref.child(cities.cityName.lowercased())
-//        Указываем по какому ключу что будет
-        cityRef.setValue(cities.convertToDictionary())
+    private func displayWarningLable(withText text: String) {
+        //        Присваиваем текст нашем предупреждающему лейблу
+        loginWeatherView.warnLabel.text = text
+        //        Создаём анимацию для warnLable
+        animator.loseAnyObject(animateObject: loginWeatherView.warnLabel)
     }
     
-    //    Загрузка города из нашей памяти
-    private func loadCity() {
-
-        //        Обновляем нашу переменную cityBeforeLast
-        addCityBeforeLast()
-    }
-    //    Метод, который находит в массиве предпоследний запрос и передаёт его в переменную cityBeforeLast для дальнейшей обработки
-    private func addCityBeforeLast() {
-        //        Предпоследний порядковый номер массива
-        var numberBeforeLast = 0
-        
+    //    Метод ввода имени и пароля для входа в приложение
+    @objc func loginTapped() {
+        //        Для регистрации необходимо ввести адрес почты и пароль, проверяем наличие
+        guard let email = loginWeatherView.emailTextField.text, let password = loginWeatherView.passwordTextField.text,
+              email != "", password != "" else {
+            //            Если условия не выполнены, то выходит ошибка
+            displayWarningLable(withText: "Информация не корректна")
+            return
         }
-    
-    //    По нажатию на кнопку будет переход на следующий экран показывающий текущую погоду по предыдущему запросу
-    @objc private func lastButtonPressed(_ sender: UIButton) {
-        //        Загружаем данные из CoreData
-        //        loadCity()
-        //        Достаём второй контроллер
-        let secondViewController = SecondViewController()
-
-        //        Совершаем переход на следующий контроллер
-        navigationController?.pushViewController(secondViewController, animated: true)
+        
+        //                Если текст ввели, то проверяем наличие зарегистрированного пользователя
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            
+            if error != nil {
+                //        Если имеется ошибка при вводе текста, то в предупреждающий Лейбл через метод displayWarningLable выводим текст ошибки
+                self.displayWarningLable(withText: "Произошла ошибка")
+            }
+            //                    Необходимо проеверить существует ли пользователь с таким логином и паролем
+            if user != nil {
+                //                        Если да, то переходим на другой контроллер
+                //                        Создаём экземпляр класса FirstViewController
+                let currentWeatherViewController = CurrentWeatherViewController()
+                //                        Совершаем переход
+                self.navigationController?.pushViewController(currentWeatherViewController, animated: true)
+            }
+            //                    Если пользователя такого нет
+            self.displayWarningLable(withText: "Такого пользователя нет.")
+        }
     }
     
-    @objc private func backLoginViewController() {
-        do {
-            try Firebase.Auth.auth().signOut()
-        } catch {
-            print(error.localizedDescription)
+    //    Метод для регистрации пользователя в приложении
+    @objc func registerTapped() {
+        //        Для регистрации необходимо ввести адрес почты и пароль, проверяем наличие
+        guard let email = loginWeatherView.emailTextField.text, let password = loginWeatherView.passwordTextField.text,
+              email != "", password != "" else {
+            //            Если условия не выполнены, то выходит ошибка
+            displayWarningLable(withText: "Информация не корректна")
+            return
         }
-        //        Позже нам необходимо, чтоб экран закрылся
-        dismiss(animated: true, completion: nil)
+        //        Создаём пользователя
+        Firebase.Auth.auth().createUser(withEmail: email, password: password) { [weak self] (user, error) in
+            
+            //            Проверяем наличие записей
+            guard error == nil, user != nil else {
+                print(error!.localizedDescription)
+                self?.displayWarningLable(withText: error?.localizedDescription as! String)
+                return
+            }
+            //            Создаём пользователя
+            let userRef = self?.ref.child((user?.user.uid)!)
+            //            Добавляем в массив значение по ключу email
+            userRef?.setValue(["email": user?.user.email])
+            //            Достаём доступ до FirstViewController
+            let currentWeatherViewController = CurrentWeatherViewController()
+            //                        Совершаем переход
+            self?.navigationController?.pushViewController(currentWeatherViewController, animated: true)
+        }
     }
 }
