@@ -262,6 +262,7 @@ final class LastWeatherView: UIView {
         //        Скролл
         scrollView.snp.makeConstraints { (maker) in
             maker.bottom.height.width.equalToSuperview()
+            maker.center.equalToSuperview()
             maker.top.equalTo(44)
         }
         //        Фон

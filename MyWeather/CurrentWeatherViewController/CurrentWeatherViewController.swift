@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import CoreLocation
+import Firebase
 
 final class CurrentWeatherViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
     
@@ -35,9 +36,9 @@ final class CurrentWeatherViewController: UIViewController, CLLocationManagerDel
         return locationManager
     }()
     
+    //    Экран будет отображён
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         //        Добавим анимацию для картинки с погодными условиями
         animate.animateAnyObjects(animateObject: currentWeatherView.weatherIconImageView)
     }
@@ -61,7 +62,7 @@ final class CurrentWeatherViewController: UIViewController, CLLocationManagerDel
         //        Получение данных по клавиатуре
         connectToNotificationCenter()
         //        Подписал текстовое поле под делегат, для работы дополнительных функций в клавиатуре
-        currentWeatherView.cityTextField.delegate = self 
+        currentWeatherView.cityTextField.delegate = self
         //        Вызов метода, который обновит интерфейс приложения по полученным данных с сервера
         dataFetcherService.onCompletion = { [weak self] currentWeather in
             guard let self = self else { return }
@@ -75,8 +76,16 @@ final class CurrentWeatherViewController: UIViewController, CLLocationManagerDel
         currentWeatherView.searchWeatherButton.addTarget(self, action: #selector(myButtonPressed(_:)), for: .primaryActionTriggered)
         //        Добавляем таргет для перехода на следующий экран
         currentWeatherView.lastCityButton.addTarget(self, action: #selector(lastButtonPressed(_:)), for: .primaryActionTriggered)
+        //        Отображаем навигейшн бар
+        navigationController?.navigationBar.isHidden = false
         //        Настраиваем кнопку навигационного контроллера
         navigationController?.setBackButton(with: "Назад")
+    }
+    
+    //    Отображение экрана будет завершено
+    override func viewWillDisappear(_ animated: Bool) {
+        //        Выход из приложения погода в Firebase и закрытие экрана
+        backButtonPressed()
     }
     
     //    Метод по сохранению названия городов в массиве cityArray
@@ -87,6 +96,7 @@ final class CurrentWeatherViewController: UIViewController, CLLocationManagerDel
     
     //    Метод, который находит в массиве предпоследний запрос и передаёт его в переменную cityBeforeLast для дальнейшей обработки
     private func addCityBeforeLast() {
+        
         //        Предпоследний порядковый номер массива
         var numberBeforeLast = 0
         
@@ -119,14 +129,22 @@ final class CurrentWeatherViewController: UIViewController, CLLocationManagerDel
     
     //    По нажатию на кнопку будет переход на следующий экран показывающий текущую погоду по предыдущему запросу
     @objc private func lastButtonPressed(_ sender: UIButton) {
-        //        Загружаем данные из CoreData
-        //        loadCity()
         //        Достаём второй контроллер
         let lastWeatherViewController = LastWeatherViewController()
         //        Передаём название города во второй контроллер
         lastWeatherViewController.nameCity = self.cityBeforeLast
         //        Совершаем переход на следующий контроллер
         navigationController?.pushViewController(lastWeatherViewController, animated: true)
+    }
+    
+    //    Выход из приложения погода в Firebase и закрытие экрана
+    private func backButtonPressed() {
+        do {
+            try Firebase.Auth.auth().signOut()
+        } catch {
+            print(error.localizedDescription)
+        }
+        dismiss(animated: true, completion: nil)
     }
 }
 

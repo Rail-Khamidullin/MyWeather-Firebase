@@ -78,6 +78,7 @@ final class LoginWeatherView: UIView {
         passwordTextField.backgroundColor = .white
         passwordTextField.font = UIFont.systemFont(ofSize: 18)
         passwordTextField.layer.cornerRadius = 4
+        passwordTextField.isSecureTextEntry = true
         return passwordTextField
     }()
     //    Стек вью для кнопок входа и регистрации
@@ -142,19 +143,16 @@ final class LoginWeatherView: UIView {
     private func makeConstraints() {
         //        Скрол
         scrollView.snp.makeConstraints { (maker) in
-            maker.center.equalToSuperview()
             maker.top.left.right.bottom.equalToSuperview()
         }
         //        Главный стек
         mainStackView.snp.makeConstraints { (maker) in
-            maker.left.right.equalToSuperview().inset(40)
-            maker.top.bottom.equalToSuperview().inset(40)
+            maker.left.right.top.bottom.equalToSuperview().inset(40)
             maker.center.equalToSuperview()
         }
         //        Стек с названием приложения и выводом предупреждения
         infoStackView.snp.makeConstraints { (maker) in
-            maker.top.equalToSuperview()
-            maker.left.right.equalToSuperview()
+            maker.left.right.top.equalToSuperview()
             maker.height.equalTo(105)
         }
         //        Стек с полями для ввода электронной почты и пароля
@@ -171,8 +169,7 @@ final class LoginWeatherView: UIView {
         }
         //        Название приложения
         titleLabel.snp.makeConstraints { (maker) in
-            maker.left.right.equalToSuperview()
-            maker.top.equalToSuperview()
+            maker.left.right.top.equalToSuperview()
         }
         //        Лейбл с выводом предупреждения
         warnLabel.snp.makeConstraints { (maker) in
@@ -181,8 +178,7 @@ final class LoginWeatherView: UIView {
         }
         //        Поля для ввода почты
         emailTextField.snp.makeConstraints { (maker) in
-            maker.left.right.equalToSuperview()
-            maker.top.equalToSuperview()
+            maker.left.right.top.equalToSuperview()
         }
         //        Поле для ввода пароля
         passwordTextField.snp.makeConstraints { (maker) in
@@ -191,8 +187,7 @@ final class LoginWeatherView: UIView {
         }
         //        Кнопка входа в приложение
         loginButton.snp.makeConstraints { (maker) in
-            maker.left.right.equalToSuperview()
-            maker.top.equalToSuperview()
+            maker.left.right.top.equalToSuperview()
         }
         //        Кнопка регистрации в приложении
         registrationButton.snp.makeConstraints { (maker) in

@@ -11,8 +11,6 @@ import Firebase
 
 class LoginWeatherViewController: UIViewController {
     
-    //    Константа с идентификатором перехода на другой контроллер
-    let segueIdentifire = "tasksSegue"
     //    Экземпляр класса с нашими view
     let loginWeatherView = LoginWeatherView()
     //    Создаём путь к нахождению данных
@@ -20,49 +18,43 @@ class LoginWeatherViewController: UIViewController {
     //    Создаём экземпляр класса с Анимацией объектов
     let animator = Animator()
     
-    override func viewWillLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
+    //    Приложение будет отображено
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //        Убираем заполненные ранее текстовые поля
+        loginWeatherView.emailTextField.text = ""
+        loginWeatherView.passwordTextField.text = ""
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //        Добавляем view на экран
         view.addSubview(loginWeatherView)
+        //        Устанавливаем констрейнты для view
         loginWeatherView.snp.makeConstraints { (maker) in
-            //            maker.top.equalTo(navigationController?.navigationBar.snp.bottom as! ConstraintRelatableTarget)
-            //            maker.left.right.bottom.equalToSuperview()
             maker.edges.equalToSuperview()
         }
-        
         //        Создаём доступ через путь "users"
-                ref = Database.database().reference(withPath: "users")
-        
-        //        Настраиваем кнопку навигационного контроллера
-        navigationController?.setBackButton(with: "Назад")
-        
+        ref = Database.database().reference(withPath: "users")
         //        Фон вью
         view.backgroundColor = .white
         //        Метод для открытия и скрытия клавиатуры
         tapGester()
         //        Получение данных по клавиатуре
         connectToNotificationCenter()
-        
         //        Устанавливаем логику входа в приложение через нажатие кнопки входа
         loginWeatherView.loginButton.addTarget(self, action: #selector(loginTapped), for: .primaryActionTriggered)
         //        Устанавливаем логику регистрации в приложении
         loginWeatherView.registrationButton.addTarget(self, action: #selector(registerTapped), for: .primaryActionTriggered)
-        
-        //        Проверяем изменилися ли пользователь и его данные
-        Firebase.Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
-            if user != nil {
-                //                        Создаём экземпляр класса FirstViewController
-                let firstViewController = CurrentWeatherViewController()
-                //                        Совершаем переход
-                self?.navigationController?.pushViewController(firstViewController, animated: true)
-            }
-        }
+        //        Проверяем изменился ли пользователь и его данные
+        //                verification()
+        //        Настраиваем кнопку навигационного контроллера
+        navigationController?.setBackButton(with: "Назад")
+        //        Убираем навигейшн бар
+        navigationController?.navigationBar.isHidden = true
     }
     
+    //    Вывод предупреждений
     private func displayWarningLable(withText text: String) {
         //        Присваиваем текст нашем предупреждающему лейблу
         loginWeatherView.warnLabel.text = text
@@ -71,21 +63,22 @@ class LoginWeatherViewController: UIViewController {
     }
     
     //    Метод ввода имени и пароля для входа в приложение
-    @objc func loginTapped() {
+    @objc private func loginTapped() {
         //        Для регистрации необходимо ввести адрес почты и пароль, проверяем наличие
         guard let email = loginWeatherView.emailTextField.text, let password = loginWeatherView.passwordTextField.text,
               email != "", password != "" else {
             //            Если условия не выполнены, то выходит ошибка
-            displayWarningLable(withText: "Информация не корректна")
+            displayWarningLable(withText: "Заполните пожалуйста данные")
             return
         }
         
         //                Если текст ввели, то проверяем наличие зарегистрированного пользователя
-        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] (user, error) in
             
             if error != nil {
                 //        Если имеется ошибка при вводе текста, то в предупреждающий Лейбл через метод displayWarningLable выводим текст ошибки
-                self.displayWarningLable(withText: "Произошла ошибка")
+                self?.displayWarningLable(withText: "Не правильный пароль или логин")
+                return
             }
             //                    Необходимо проеверить существует ли пользователь с таким логином и паролем
             if user != nil {
@@ -93,15 +86,29 @@ class LoginWeatherViewController: UIViewController {
                 //                        Создаём экземпляр класса FirstViewController
                 let currentWeatherViewController = CurrentWeatherViewController()
                 //                        Совершаем переход
-                self.navigationController?.pushViewController(currentWeatherViewController, animated: true)
+                self?.navigationController?.pushViewController(currentWeatherViewController, animated: true)
+                return
             }
             //                    Если пользователя такого нет
-            self.displayWarningLable(withText: "Такого пользователя нет.")
+            self?.displayWarningLable(withText: "Такого пользователя нет.")
+        }
+    }
+    
+    //        Проверяем изменился ли пользователь и его данные
+    private func verification() {
+        
+        Firebase.Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
+            if user != nil {
+                //                        Создаём экземпляр класса CurrentWeatherViewController
+                let сurrentWeatherViewController = CurrentWeatherViewController()
+                //                        Совершаем переход
+                self?.navigationController?.pushViewController(сurrentWeatherViewController, animated: true)
+            }
         }
     }
     
     //    Метод для регистрации пользователя в приложении
-    @objc func registerTapped() {
+    @objc private func registerTapped() {
         //        Для регистрации необходимо ввести адрес почты и пароль, проверяем наличие
         guard let email = loginWeatherView.emailTextField.text, let password = loginWeatherView.passwordTextField.text,
               email != "", password != "" else {

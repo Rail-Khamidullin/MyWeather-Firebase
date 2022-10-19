@@ -15,9 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        
+        //        Достаём первый контроллер для отображения
         let loginWeatherViewController = LoginWeatherViewController()
-        let currentWeatherViewController = CurrentWeatherViewController()
         //        Достаём window для дальнейшего отображения контроллера
         window = UIWindow(frame: UIScreen.main.bounds)
         //        Указываем с какого контроллера появится навигейшн бар

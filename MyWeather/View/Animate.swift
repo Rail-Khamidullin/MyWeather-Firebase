@@ -26,18 +26,18 @@ struct Animator {
         }
     }
     //    Появление объекта на 4 секунды и исчезновение после
-        func loseAnyObject<T: UIView>(animateObject type: T) {
-            
-            UIView.animate(withDuration: 4,
-                           delay: 0,
-                           usingSpringWithDamping: 1,
-                           initialSpringVelocity: 1,
-                           options: .curveEaseInOut) {
-    //            Объект появляется на 4 секунды
-                type.alpha = 1
-            } completion: { (complete) in
-    //            и снова исчезает
-                type.alpha = 0
-            }
+    func loseAnyObject<T: UIView>(animateObject type: T) {
+        
+        UIView.animate(withDuration: 4,
+                       delay: 0,
+                       usingSpringWithDamping: 1,
+                       initialSpringVelocity: 1,
+                       options: .curveEaseInOut) {
+            //            Объект появляется на 4 секунды
+            type.alpha = 1
+        } completion: { (complete) in
+            //            и снова исчезает
+            type.alpha = 0
         }
+    }
 }
