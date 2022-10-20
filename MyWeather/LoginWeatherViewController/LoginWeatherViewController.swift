@@ -24,6 +24,8 @@ class LoginWeatherViewController: UIViewController {
         //        Убираем заполненные ранее текстовые поля
         loginWeatherView.emailTextField.text = ""
         loginWeatherView.passwordTextField.text = ""
+        //        Убираем навигейшн бар
+        navigationController?.navigationBar.isHidden = true
     }
     
     override func viewDidLoad() {
@@ -50,8 +52,6 @@ class LoginWeatherViewController: UIViewController {
         //                verification()
         //        Настраиваем кнопку навигационного контроллера
         navigationController?.setBackButton(with: "Назад")
-        //        Убираем навигейшн бар
-        navigationController?.navigationBar.isHidden = true
     }
     
     //    Вывод предупреждений

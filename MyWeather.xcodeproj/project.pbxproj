@@ -23,6 +23,8 @@
 		338F5B9628FD971000ED6846 /* ExtensionLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338F5B9528FD971000ED6846 /* ExtensionLoginView.swift */; };
 		338F5BB328FDA26B00ED6846 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338F5BB228FDA26B00ED6846 /* User.swift */; };
 		338F5BC028FDA58D00ED6846 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 338F5BBF28FDA58D00ED6846 /* GoogleService-Info.plist */; };
+		33C6117C29003B2700429324 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C6117B29003B2700429324 /* City.swift */; };
+		33C6118129003CAA00429324 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C6118029003CAA00429324 /* DataBase.swift */; };
 		33D5C5032844C2D700159148 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D5C5022844C2D700159148 /* AppDelegate.swift */; };
 		33D5C5072844C2D700159148 /* CurrentWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D5C5062844C2D700159148 /* CurrentWeatherViewController.swift */; };
 		33D5C50C2844C2DA00159148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33D5C50B2844C2DA00159148 /* Assets.xcassets */; };
@@ -71,6 +73,8 @@
 		338F5B9528FD971000ED6846 /* ExtensionLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionLoginView.swift; sourceTree = "<group>"; };
 		338F5BB228FDA26B00ED6846 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		338F5BBF28FDA58D00ED6846 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "MyWeather/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		33C6117B29003B2700429324 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		33C6118029003CAA00429324 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		33D5C4FF2844C2D700159148 /* MyWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33D5C5022844C2D700159148 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33D5C5062844C2D700159148 /* CurrentWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 			isa = PBXGroup;
 			children = (
 				338F5BB228FDA26B00ED6846 /* User.swift */,
+				33C6117B29003B2700429324 /* City.swift */,
+				33C6118029003CAA00429324 /* DataBase.swift */,
 			);
 			name = Firebase;
 			sourceTree = "<group>";
@@ -552,8 +558,10 @@
 				338F5B8E28FD96E000ED6846 /* LoginWeatherViewController.swift in Sources */,
 				33D5C58B284650E600159148 /* ExtensionViewController.swift in Sources */,
 				338F5B0928F9381000ED6846 /* ExtensionNavigationController.swift in Sources */,
+				33C6118129003CAA00429324 /* DataBase.swift in Sources */,
 				338F5AFB28F92F1100ED6846 /* DataFetcherServiseLastWether.swift in Sources */,
 				33D5C5072844C2D700159148 /* CurrentWeatherViewController.swift in Sources */,
+				33C6117C29003B2700429324 /* City.swift in Sources */,
 				338F5B8528FD94A300ED6846 /* LoginWeatherView.swift in Sources */,
 				334577B8286438C90046D1E5 /* NetworkDataFetcher.swift in Sources */,
 				334577C028643DB00046D1E5 /* DataFetcherService.swift in Sources */,

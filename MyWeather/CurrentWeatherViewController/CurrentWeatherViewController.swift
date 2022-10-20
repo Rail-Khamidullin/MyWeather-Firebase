@@ -12,6 +12,8 @@ import Firebase
 
 final class CurrentWeatherViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
     
+    //    Создаём зависимость с DataBase
+    private var dataBase: DataBaseProtocol?
     //    Инициализируем CurrentWeatherView
     let currentWeatherView = CurrentWeatherView()
     //    Создаём св-во для присвоения предпоследнего запроса города
@@ -46,7 +48,7 @@ final class CurrentWeatherViewController: UIViewController, CLLocationManagerDel
     //    Экран уже загрузился
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        dataBase = DataBase()
         //        Фон нашего view
         view.backgroundColor = .white
         //        Добавляем WeatherView в view
@@ -80,6 +82,8 @@ final class CurrentWeatherViewController: UIViewController, CLLocationManagerDel
         navigationController?.navigationBar.isHidden = false
         //        Настраиваем кнопку навигационного контроллера
         navigationController?.setBackButton(with: "Назад")
+        
+        dataBase?.createUser()
     }
     
     //    Отображение экрана будет завершено
@@ -124,6 +128,8 @@ final class CurrentWeatherViewController: UIViewController, CLLocationManagerDel
             saveCity(nameCity: city)
             //            Обновляем нашу переменную cityBeforeLast
             addCityBeforeLast()
+            
+            dataBase?.saveCity(city: city)
         }
     }
     
