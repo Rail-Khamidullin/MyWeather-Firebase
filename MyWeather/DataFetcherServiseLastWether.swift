@@ -25,7 +25,7 @@ final class DataFetcherServiceLastController {
         let urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(city)&apikey=\(weatherApiKey)&lang=ru&units=metric&lang=ru"
         
         //        Присваиваем полученные данные weather и обновляем структуру данных CurrentWeather
-        let weather = self.fetchCurrentWeatherData(urlString: urlString) { [weak self] (currentWeatherData) in
+        self.fetchCurrentWeatherData(urlString: urlString) { [weak self] (currentWeatherData) in
             
             if let currentWeatherData = currentWeatherData {
                 //                Передаём в форму нашей текущей погоды данные по текущей погоде с сервера

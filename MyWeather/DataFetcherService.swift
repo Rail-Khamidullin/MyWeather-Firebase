@@ -23,7 +23,7 @@ final class DataFetcherService {
     //    Создаём внешнюю зависимость с NetworkDataFetcher через Абстракцию (протокол DataFetcher)
     private let dataFetcher: DataFetcher
     
-    //    Конструктор для зависимости с клсассом NetworkDataFetcher через абстракцию
+    //    Конструктор для зависимости с классом NetworkDataFetcher через абстракцию
     init(dataFetcher: DataFetcher = NetworkDataFetcher()) {
         
         self.dataFetcher = dataFetcher
