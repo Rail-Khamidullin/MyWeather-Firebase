@@ -9,7 +9,7 @@ import Foundation
 import SnapKit
 
 //   Второй контроллер для отображение текущих погодных условий для предыдущего запроса
-class LastWeatherViewController: UIViewController {
+final class LastWeatherViewController: UIViewController {
     
     //    Название города приходящего с первого контроллера
     var nameCity: String = "Город"

@@ -56,7 +56,7 @@ final class CurrentWeatherView: UIView {
     //    Текущая температура
     private let tempCurrentLabel: UILabel = {
         let tempCurrentLabel = UILabel()
-        tempCurrentLabel.text = "23"
+        tempCurrentLabel.text = " "
         tempCurrentLabel.font = UIFont.systemFont(ofSize: 17)
         tempCurrentLabel.textColor = UIColor(named: "Text color")
         return tempCurrentLabel
@@ -79,7 +79,7 @@ final class CurrentWeatherView: UIView {
     //    Текущая ощущаемая температура
     private let feelsCurrentTempLabel: UILabel = {
         let feelsCurrentTempLabel = UILabel()
-        feelsCurrentTempLabel.text = "25"
+        feelsCurrentTempLabel.text = " "
         feelsCurrentTempLabel.font = UIFont.systemFont(ofSize: 17)
         feelsCurrentTempLabel.textColor = UIColor(named: "Text color")
         return feelsCurrentTempLabel
@@ -102,7 +102,7 @@ final class CurrentWeatherView: UIView {
     //    Текущее атмосферное давление
     private let pressureCurrentLabel: UILabel = {
         let pressureCurrentLabel = UILabel()
-        pressureCurrentLabel.text = "746"
+        pressureCurrentLabel.text = " "
         pressureCurrentLabel.font = UIFont.systemFont(ofSize: 17)
         pressureCurrentLabel.textColor = UIColor(named: "Text color")
         return pressureCurrentLabel
@@ -125,7 +125,7 @@ final class CurrentWeatherView: UIView {
     //    Текущая скорость ветра
     private let windCurrentLabel: UILabel = {
         let windCurrentLabel = UILabel()
-        windCurrentLabel.text = "5"
+        windCurrentLabel.text = " "
         windCurrentLabel.font = UIFont.systemFont(ofSize: 17)
         windCurrentLabel.textColor = UIColor(named: "Text color")
         return windCurrentLabel
@@ -148,7 +148,7 @@ final class CurrentWeatherView: UIView {
     //    Текущая влажность воздуха
     private let currentHumidityLabel: UILabel = {
         let currentHumidityLabel = UILabel()
-        currentHumidityLabel.text = "35"
+        currentHumidityLabel.text = " "
         currentHumidityLabel.font = UIFont.systemFont(ofSize: 16)
         currentHumidityLabel.textColor = UIColor(named: "Text color")
         return currentHumidityLabel
@@ -179,7 +179,7 @@ final class CurrentWeatherView: UIView {
     //    Время рассвета
     private let sunriseTimeLabel: UILabel = {
         let sunriseTimeLabel = UILabel()
-        sunriseTimeLabel.text = "04:22:31"
+        sunriseTimeLabel.text = " "
         sunriseTimeLabel.font = UIFont.systemFont(ofSize: 16)
         sunriseTimeLabel.textColor = UIColor(named: "Text color")
         return sunriseTimeLabel
@@ -202,7 +202,7 @@ final class CurrentWeatherView: UIView {
     //    Время заката
     private let sunsetTimeLabel: UILabel = {
         let sunsetTimeLabel = UILabel()
-        sunsetTimeLabel.text = "21:10:15"
+        sunsetTimeLabel.text = " "
         sunsetTimeLabel.font = UIFont.systemFont(ofSize: 16)
         sunsetTimeLabel.textColor = UIColor(named: "Text color")
         return sunsetTimeLabel
@@ -218,6 +218,8 @@ final class CurrentWeatherView: UIView {
         cityTextField.layer.borderWidth = 2
         cityTextField.layer.borderColor = UIColor.systemGray6.cgColor
         cityTextField.layer.cornerRadius = 10
+        //        Ввод текста происходит на английском языке. Метод, который не позволяет открыть клавиатуру на русском
+        cityTextField.keyboardType = .asciiCapable
         return cityTextField
     }()
     //    Кнопка поиска погоды
@@ -376,7 +378,7 @@ final class CurrentWeatherView: UIView {
     
     //    Обновление интерфейса приложения
     func updateInterfaceWith(weather: CurrentWeather) {
-        //        Асинхронно через гланую очередь
+        //        Асинхронно через главную очередь
         DispatchQueue.main.async {
             self.tempCurrentLabel.text = weather.currentTemperature
             self.feelsCurrentTempLabel.text = weather.currentFeelsTemperature

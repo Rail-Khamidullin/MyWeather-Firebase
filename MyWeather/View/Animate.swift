@@ -25,6 +25,7 @@ struct Animator {
             type.transform = scaleGrowTransform.concatenating(scaleShrinkTransform)
         }
     }
+    
     //    Появление объекта на 4 секунды и исчезновение после
     func loseAnyObject<T: UIView>(animateObject type: T) {
         

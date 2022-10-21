@@ -9,8 +9,11 @@ import UIKit
 import SnapKit
 import Firebase
 
-class LoginWeatherViewController: UIViewController {
+
+final class LoginWeatherViewController: UIViewController {
     
+    //    Создаём зависимость с абстракцией AuthenticationProtocol
+    var authentication: AuthenticationProtocol?
     //    Экземпляр класса с нашими view
     let loginWeatherView = LoginWeatherView()
     //    Создаём путь к нахождению данных
@@ -36,6 +39,8 @@ class LoginWeatherViewController: UIViewController {
         loginWeatherView.snp.makeConstraints { (maker) in
             maker.edges.equalToSuperview()
         }
+        //        Зависимость с Authentication через абстракцию AuthenticationProtocol
+        authentication = Authentication()
         //        Создаём доступ через путь "users"
         ref = Database.database().reference(withPath: "users")
         //        Фон вью
@@ -51,7 +56,7 @@ class LoginWeatherViewController: UIViewController {
         //        Проверяем изменился ли пользователь и его данные
         //                verification()
         //        Настраиваем кнопку навигационного контроллера
-        navigationController?.setBackButton(with: "Назад")
+        self.navigationController?.setBackButton(with: "Назад")
     }
     
     //    Вывод предупреждений
@@ -83,7 +88,7 @@ class LoginWeatherViewController: UIViewController {
             //                    Необходимо проеверить существует ли пользователь с таким логином и паролем
             if user != nil {
                 //                        Если да, то переходим на другой контроллер
-                //                        Создаём экземпляр класса FirstViewController
+                //                        Создаём экземпляр класса CurrentWeatherViewController
                 let currentWeatherViewController = CurrentWeatherViewController()
                 //                        Совершаем переход
                 self?.navigationController?.pushViewController(currentWeatherViewController, animated: true)
@@ -96,7 +101,6 @@ class LoginWeatherViewController: UIViewController {
     
     //        Проверяем изменился ли пользователь и его данные
     private func verification() {
-        
         Firebase.Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
             if user != nil {
                 //                        Создаём экземпляр класса CurrentWeatherViewController
@@ -116,23 +120,11 @@ class LoginWeatherViewController: UIViewController {
             displayWarningLable(withText: "Информация не корректна")
             return
         }
-        //        Создаём пользователя
-        Firebase.Auth.auth().createUser(withEmail: email, password: password) { [weak self] (user, error) in
-            
-            //            Проверяем наличие записей
-            guard error == nil, user != nil else {
-                print(error!.localizedDescription)
-                self?.displayWarningLable(withText: error?.localizedDescription as! String)
-                return
-            }
-            //            Создаём пользователя
-            let userRef = self?.ref.child((user?.user.uid)!)
-            //            Добавляем в массив значение по ключу email
-            userRef?.setValue(["email": user?.user.email])
-            //            Достаём доступ до FirstViewController
-            let currentWeatherViewController = CurrentWeatherViewController()
-            //                        Совершаем переход
-            self?.navigationController?.pushViewController(currentWeatherViewController, animated: true)
-        }
+        //        Проверяем пользователя зарегестрирован он или нет
+        authentication?.createUser(email: email, password: password, navController: navigationController, completion: { [weak self] (error) in
+            //            Отображаем ошибку на экране
+            self?.displayWarningLable(withText: "Такой пользователь уже существует")
+            print(error)
+        })
     }
 }

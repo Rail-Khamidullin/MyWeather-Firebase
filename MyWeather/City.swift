@@ -28,7 +28,7 @@ struct City {
     /// - Parameter snapshot: Когда хранятся данные в базе данных и требуется текущая информация, то мы обращаемся к DataSnapshot (некий снимок, срез данных, как-будто фотография данных). Этот Snapshot и есть JSON
     init(snapshot: DataSnapshot) {
         let snapshotValue = snapshot.value as! [String : AnyObject]
-        cityName = snapshotValue["title"] as! String
+        cityName = snapshotValue["cityName"] as! String
         userID = snapshotValue["userID"] as! String
         completed = snapshotValue["completed"] as! Bool
         ref = snapshot.ref
