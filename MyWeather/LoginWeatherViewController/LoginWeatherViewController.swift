@@ -12,8 +12,6 @@ import Firebase
 
 final class LoginWeatherViewController: UIViewController {
     
-    //    Создаём зависимость с абстракцией AuthenticationProtocol
-    var authentication: AuthenticationProtocol?
     //    Экземпляр класса с нашими view
     let loginWeatherView = LoginWeatherView()
     //    Создаём путь к нахождению данных
@@ -39,8 +37,6 @@ final class LoginWeatherViewController: UIViewController {
         loginWeatherView.snp.makeConstraints { (maker) in
             maker.edges.equalToSuperview()
         }
-        //        Зависимость с Authentication через абстракцию AuthenticationProtocol
-        authentication = Authentication()
         //        Создаём доступ через путь "users"
         ref = Database.database().reference(withPath: "users")
         //        Фон вью
@@ -54,7 +50,7 @@ final class LoginWeatherViewController: UIViewController {
         //        Устанавливаем логику регистрации в приложении
         loginWeatherView.registrationButton.addTarget(self, action: #selector(registerTapped), for: .primaryActionTriggered)
         //        Проверяем изменился ли пользователь и его данные
-        //                verification()
+        //                        verification()
         //        Настраиваем кнопку навигационного контроллера
         self.navigationController?.setBackButton(with: "Назад")
     }
@@ -101,7 +97,7 @@ final class LoginWeatherViewController: UIViewController {
     
     //        Проверяем изменился ли пользователь и его данные
     private func verification() {
-        Firebase.Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
+        Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
             if user != nil {
                 //                        Создаём экземпляр класса CurrentWeatherViewController
                 let сurrentWeatherViewController = CurrentWeatherViewController()
@@ -120,11 +116,21 @@ final class LoginWeatherViewController: UIViewController {
             displayWarningLable(withText: "Информация не корректна")
             return
         }
-        //        Проверяем пользователя зарегестрирован он или нет
-        authentication?.createUser(email: email, password: password, navController: navigationController, completion: { [weak self] (error) in
-            //            Отображаем ошибку на экране
-            self?.displayWarningLable(withText: "Такой пользователь уже существует")
-            print(error)
-        })
+        //        Создаём пользователя
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] (user, error) in
+            //            Проверяем наличие записей
+            guard error == nil, user != nil else {
+                self?.displayWarningLable(withText: "Такой пользователь уже существует")
+                return
+            }
+            //            Создаём пользователя
+            let userRef = self?.ref.child((user?.user.uid)!)
+            //            Добавляем в массив значение по ключу email
+            userRef?.setValue(["email": user?.user.email])
+            //            Достаём доступ до CurrentWeatherViewController
+            let currentWeatherViewController = CurrentWeatherViewController()
+            //                        Совершаем переход
+            self?.navigationController?.pushViewController(currentWeatherViewController, animated: true)
+        }
     }
 }
